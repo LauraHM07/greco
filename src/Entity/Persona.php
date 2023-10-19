@@ -10,9 +10,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Persona
 {
-
     /**
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var int
+     */
+    private $id;
+    /**
      * @ORM\Column(type="string")
      * @var string
      */
@@ -47,6 +51,12 @@ class Persona
      * @var bool
      */
     private $gestorPrestamos;
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
     public function getNombreUsuario(): string
     {
         return $this->nombreUsuario;
