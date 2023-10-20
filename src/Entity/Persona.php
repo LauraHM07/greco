@@ -64,6 +64,12 @@ class Persona
         return $this->nombreUsuario;
     }
 
+    public function setNombreUsuario(string $nombreUsuario): Persona
+    {
+        $this->nombreUsuario = $nombreUsuario;
+        return $this;
+    }
+
     public function getClave(): string
     {
         return $this->clave;
@@ -73,6 +79,7 @@ class Persona
         $this->clave = $clave;
         return $this;
     }
+
     public function getNombre(): string
     {
         return $this->nombre;
