@@ -46,7 +46,7 @@ class Material
      * @ORM\Column(type="boolean")
      * @var bool
      */
-    private $disponinble;
+    private $disponible;
 
     /**
      * @ORM\Column(type="date", nullable=true)
@@ -109,14 +109,14 @@ class Material
         return $this;
     }
 
-    public function isDisponinble(): bool
+    public function isDisponible(): bool
     {
-        return $this->disponinble;
+        return $this->disponible;
     }
 
-    public function setDisponinble(bool $disponinble): Material
+    public function setDisponible(bool $disponible): Material
     {
-        $this->disponinble = $disponinble;
+        $this->disponible = $disponible;
         return $this;
     }
 
