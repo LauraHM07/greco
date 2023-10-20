@@ -1,0 +1,30 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Localizacion{% endblock %}
+
+{% block content %}
+    <h1>Lista de localizaciones</h1>
+    <br>
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for localizacion in localizaciones %}
+            <tr>
+                <td>{{ localizacion.codigo }}</td>
+                <td>{{ localizacion.nombre }}</td>
+                <td>{{ localizacion.descripcion is null ? ' --- ' : localizacion.descripcion }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">NO hay datos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Material{% endblock %}
+
+{% block content %}
+    <h1>Lista de materiales</h1>
+    <br>
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Fecha Ultimo Prestamo</th>
+            <th>Fecha Ultima Devolucion</th>
+            <th>¿Disponible?</th>
+            <th>Fecha Alta</th>
+            <th>Fecha Baja</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for material in materiales %}
+            <tr>
+                <td>{{ material.nombre }}</td>
+                <td>{{ material.descripcion is null ? '---' : material.descripcion }}</td>
+                <td>{{ material.fechaHoraUltimoPrestamo ? material.fechaHoraUltimoPrestamo|date('Y/m/d') : '---' }}</td>
+                <td>{{ material.fechaHoraUltimaDevolucion ? material.fechaHoraUltimaDevolucion|date('Y/m/d') : '---' }}</td>
+                <td>{{ material.disponible ? 'Sí' : 'No' }}</td>
+                <td>{{ material.fechaAlta ? material.fechaAlta|date('Y/m/d') : '---' }}</td>
+                <td>{{ material.fechaBaja ? material.fechaBaja|date('Y/m/d') : '---' }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">NO hay datos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

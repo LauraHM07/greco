@@ -1,0 +1,34 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Persona{% endblock %}
+
+{% block content %}
+    <h1>Lista de personas</h1>
+    <br>
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Nombre Usuario</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>¿Administrador?</th>
+            <th>¿Gestor prestamos?</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for persona in personas %}
+            <tr>
+                <td>{{ persona.nombreUsuario }}</td>
+                <td>{{ persona.nombre }}</td>
+                <td>{{ persona.apellidos }}</td>
+                <td>{{ persona.administrador ? 'Sí' : 'No' }}</td>
+                <td>{{ persona.gestorPrestamos ? 'Sí' : 'No' }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">NO hay datos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

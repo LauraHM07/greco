@@ -1,0 +1,30 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Historial{% endblock %}
+
+{% block content %}
+    <h1>Lista de historiales</h1>
+    <br>
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Fecha prestamo</th>
+            <th>Fecha Devolución </th>
+            <th>Notas</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for historial in historiales %}
+            <tr>
+                <td>{{ historial.fechaHoraPrestramo|date('Y/m/d') }}</td>
+                <td>{{ historial.fechaHoraDevolucion|date('Y/m/d') }}</td>
+                <td>{{ historial.notas is null ? '---' : historial.notas }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">NO hay datos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
