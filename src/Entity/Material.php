@@ -60,6 +60,12 @@ class Material
      */
     private $fechaBaja;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Localizacion", inversedBy="materiales")
+     * @var Localizacion|null
+     */
+    private $localizacion;
+
     public function getId(): int
     {
         return $this->id;
@@ -139,6 +145,18 @@ class Material
     public function setFechaBaja(?\DateTime $fechaBaja): Material
     {
         $this->fechaBaja = $fechaBaja;
+        return $this;
+    }
+
+    public function getLocalizacion(): ?Localizacion
+    {
+        return $this->localizacion;
+    }
+
+    public function setLocalizacion(?Localizacion $localizacion): Material
+    {
+        $this->localizacion = $localizacion;
+
         return $this;
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,16 @@ class Localizacion
      * @var string|null
      */
     private $descripcion;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Material", mappedBy="localizacion")
+     * @var Material[]|Collection
+     */
+    private $materiales;
+
+    public function __construct() {
+        $this->materiales = new ArrayCollection();
+    }
 
     public function getId(): int
     {
@@ -72,6 +84,24 @@ class Localizacion
     public function setDescripcion(?string $descripcion): Localizacion
     {
         $this->descripcion = $descripcion;
+        return $this;
+    }
+
+    /**
+     * @return Material[]|Collection
+     */
+    public function getMateriales()
+    {
+        return $this->materiales;
+    }
+
+    /**
+     * @param Material[]|Collection $materiales
+     * @return Localizacion
+     */
+    public function setMateriales($materiales)
+    {
+        $this->materiales = $materiales;
         return $this;
     }
 }
