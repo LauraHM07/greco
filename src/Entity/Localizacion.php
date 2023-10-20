@@ -13,6 +13,13 @@ class Localizacion
 
     /**
      * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
+     * @var int
+     */
+    public $id;
+
+    /**
      * @ORM\Column(type="string")
      * @var string
      */
@@ -30,9 +37,20 @@ class Localizacion
      */
     private $descripcion;
 
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
     public function getCodigo(): string
     {
         return $this->codigo;
+    }
+
+    public function setCodigo(?string $codigo): Localizacion
+    {
+        $this->codigo = $codigo;
+        return $this;
     }
 
     public function getNombre(): string
