@@ -1,11 +1,11 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Material{% endblock %}
+{% block title %}GRECO - Material{% endblock %}
 
 {% block content %}
-    <h1>Lista de materiales</h1>
-    <br>
-    <table class="table table-bordered table-striped table-hover">
+    <h2 class="titulo">Listado del material</h2>
+
+    <table class="table table-bordered table-hover align-middle">
         <thead>
         <tr>
             <th>Nombre</th>
@@ -15,6 +15,7 @@
             <th>¿Disponible?</th>
             <th>Fecha Alta</th>
             <th>Fecha Baja</th>
+            <th>Localización</th>
         </tr>
         </thead>
         <tbody>
@@ -27,10 +28,11 @@
                 <td>{{ material.disponible ? 'Sí' : 'No' }}</td>
                 <td>{{ material.fechaAlta ? material.fechaAlta|date('Y/m/d') : '---' }}</td>
                 <td>{{ material.fechaBaja ? material.fechaBaja|date('Y/m/d') : '---' }}</td>
+                <td>{{ material.localizacion.nombre }}</td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">NO hay datos</td>
+                <td colspan="8">NO hay datos</td>
             </tr>
         {% endfor %}
         </tbody>

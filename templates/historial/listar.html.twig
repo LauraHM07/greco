@@ -1,17 +1,17 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Historial{% endblock %}
+{% block title %}GRECO - Historial{% endblock %}
 
 {% block content %}
-    <h1>Lista de historiales</h1>
-    <br>
-    <table class="table table-bordered table-striped table-hover">
-        <thead>
-        <tr>
-            <th>Fecha prestamo</th>
-            <th>Fecha Devolución </th>
-            <th>Notas</th>
-        </tr>
+    <h2 class="titulo">Listado de los historiales</h2>
+
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Fecha prestamo</th>
+                <th>Fecha Devolución </th>
+                <th>Notas</th>
+            </tr>
         </thead>
         <tbody>
         {% for historial in historiales %}
