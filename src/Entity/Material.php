@@ -66,6 +66,12 @@ class Material
      */
     private $localizacion;
 
+    /**
+     * @ORM\Column(type="boolean")
+     * @var bool
+     */
+    private $materialPadre;
+
     public function getId(): int
     {
         return $this->id;
@@ -158,5 +164,19 @@ class Material
         $this->localizacion = $localizacion;
 
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isMaterialPadre()
+    {
+        return $this->materialPadre;
+    }
+
+
+    public function setMaterialPadre(bool $materialPadre)
+    {
+        $this->materialPadre = $materialPadre;
     }
 }

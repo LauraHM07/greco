@@ -4,12 +4,12 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-body {
+/**body {
     background-color: transparent !important;
     background-image: var(--background-image) !important;
     background-size: cover;
     background-position: center;
-}
+}**/
 
 .titulo {
     margin-top: 1em !important;
@@ -28,6 +28,8 @@ body {
 }
 
 .navbar-brand{
+    display: flex;
+    flex-direction: row;
     color: white !important;
 }
 

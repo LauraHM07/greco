@@ -45,6 +45,12 @@ class Localizacion
      */
     private $materiales;
 
+    /**
+     * @ORM\Column(type="boolean")
+     * @var bool
+     */
+    private $localizacionPadre;
+
     public function __construct() {
         $this->materiales = new ArrayCollection();
     }
@@ -103,5 +109,21 @@ class Localizacion
     {
         $this->materiales = $materiales;
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isLocalizacionPadre()
+    {
+        return $this->localizacionPadre;
+    }
+
+    /**
+     * @param bool $localizacionPadre
+     */
+    public function setLocalizacionPadre(bool $localizacionPadre)
+    {
+        $this->localizacionPadre = $localizacionPadre;
     }
 }

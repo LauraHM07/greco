@@ -16,6 +16,7 @@
             <th>Fecha Alta</th>
             <th>Fecha Baja</th>
             <th>Localización</th>
+            <th>¿Es padre?</th>
         </tr>
         </thead>
         <tbody>
@@ -29,10 +30,11 @@
                 <td>{{ material.fechaAlta ? material.fechaAlta|date('Y/m/d') : '---' }}</td>
                 <td>{{ material.fechaBaja ? material.fechaBaja|date('Y/m/d') : '---' }}</td>
                 <td>{{ material.localizacion.nombre }}</td>
+                <td>{{ material.materialPadre ? 'Sí' : 'No' }}</td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">NO hay datos</td>
+                <td colspan="9">NO hay datos</td>
             </tr>
         {% endfor %}
         </tbody>

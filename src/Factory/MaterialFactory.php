@@ -54,6 +54,7 @@ final class MaterialFactory extends ModelFactory
             'disponible' => self::faker()->boolean(50),
             'fechaAlta' => self::faker()->optional(0.5)->dateTimeThisDecade(),
             'fechaBaja' => self::faker()->optional(0.5)->dateTimeThisDecade(),
+            'materialPadre' =>  self::faker()->boolean(50)
         ];
     }
 
