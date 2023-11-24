@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -53,6 +54,31 @@ class Persona
      * @var bool
      */
     private $gestorPrestamos;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Material", mappedBy="persona")
+     * @var Material[]|null
+     */
+    private $materiales;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Material", mappedBy="responsable")
+     * @var Material[]|null
+     */
+    private $materialesResponsable;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Material", mappedBy="prestadoPor")
+     * @var Material[]
+     */
+    private $materialesPrestados;
+
+    public function __construct()
+    {
+        $this->materiales = new ArrayCollection();
+        $this->materialesResponsable = new ArrayCollection();
+        $this->materialesPrestados = new ArrayCollection();
+    }
 
     public function getId(): int
     {
@@ -117,4 +143,57 @@ class Persona
         return $this;
     }
 
+    /**
+     * @return Material[]|ArrayCollection|null
+     */
+    public function getMateriales()
+    {
+        return $this->materiales;
+    }
+
+    /**
+     * @param Material[]|ArrayCollection|null $materiales
+     * @return Persona
+     */
+    public function setMateriales($materiales)
+    {
+        $this->materiales = $materiales;
+        return $this;
+    }
+
+    /**
+     * @return Material[]|ArrayCollection|null
+     */
+    public function getMaterialesResponsable()
+    {
+        return $this->materialesResponsable;
+    }
+
+    /**
+     * @param Material[]|ArrayCollection|null $materialesResponsable
+     * @return Persona
+     */
+    public function setMaterialesResponsable($materialesResponsable)
+    {
+        $this->materialesResponsable = $materialesResponsable;
+        return $this;
+    }
+
+    /**
+     * @return Material[]|ArrayCollection
+     */
+    public function getMaterialesPrestados()
+    {
+        return $this->materialesPrestados;
+    }
+
+    /**
+     * @param Material[]|ArrayCollection $materialesPrestados
+     * @return Persona
+     */
+    public function setMaterialesPrestados($materialesPrestados)
+    {
+        $this->materialesPrestados = $materialesPrestados;
+        return $this;
+    }
 }

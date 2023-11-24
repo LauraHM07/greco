@@ -72,6 +72,27 @@ class Material
      */
     private $materialPadre;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Persona", inversedBy="materiales")
+     * @ORM\JoinColumn(name="persona_id", referencedColumnName="id", nullable=true)
+     * @var Persona|null
+     */
+    private $persona;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Persona", inversedBy="materialesResponsable")
+     * @ORM\JoinColumn(name="responsable_id", referencedColumnName="id", nullable=true)
+     * @var Persona|null
+     */
+    private $responsable;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Persona")
+     * @ORM\JoinColumn(name="prestado_por_id", referencedColumnName="id", nullable=true)
+     * @var Persona|null
+     */
+    private $prestadoPor;
+
     public function getId(): int
     {
         return $this->id;
@@ -178,5 +199,38 @@ class Material
     public function setMaterialPadre(bool $materialPadre)
     {
         $this->materialPadre = $materialPadre;
+    }
+
+    public function getPersona(): ?Persona
+    {
+        return $this->persona;
+    }
+
+    public function setPersona(?Persona $persona): Material
+    {
+        $this->persona = $persona;
+        return $this;
+    }
+
+    public function getResponsable(): ?Persona
+    {
+        return $this->responsable;
+    }
+
+    public function setResponsable(?Persona $responsable): Material
+    {
+        $this->responsable = $responsable;
+        return $this;
+    }
+
+    public function getPrestadoPor(): ?Persona
+    {
+        return $this->prestadoPor;
+    }
+
+    public function setPrestadoPor(?Persona $prestadoPor): Material
+    {
+        $this->prestadoPor = $prestadoPor;
+        return $this;
     }
 }
