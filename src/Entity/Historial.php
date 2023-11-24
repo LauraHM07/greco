@@ -58,6 +58,14 @@ class Historial
      */
     private $devueltoPor;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Material", inversedBy="historicos")
+     * @ORM\JoinColumn(name="material_id", referencedColumnName="id")
+     * @var Material|null
+     */
+    private $material;
+
+
     public function getId(): int
     {
         return $this->id;
@@ -126,6 +134,17 @@ class Historial
     public function setDevueltoPor(?Persona $devueltoPor): Historial
     {
         $this->devueltoPor = $devueltoPor;
+        return $this;
+    }
+
+    public function getMaterial(): ?Material
+    {
+        return $this->material;
+    }
+
+    public function setMaterial(?Material $material): Historial
+    {
+        $this->material = $material;
         return $this;
     }
 }

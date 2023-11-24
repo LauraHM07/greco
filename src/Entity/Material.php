@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -92,6 +93,17 @@ class Material
      * @var Persona|null
      */
     private $prestadoPor;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Historial", mappedBy="material")
+     * @var Historial|null
+     */
+    private $historicos;
+
+    public function __construct()
+    {
+        $this->historicos = new ArrayCollection();
+    }
 
     public function getId(): int
     {
@@ -231,6 +243,24 @@ class Material
     public function setPrestadoPor(?Persona $prestadoPor): Material
     {
         $this->prestadoPor = $prestadoPor;
+        return $this;
+    }
+
+    /**
+     * @return Historial|ArrayCollection|null
+     */
+    public function getHistoricos()
+    {
+        return $this->historicos;
+    }
+
+    /**
+     * @param Historial|ArrayCollection|null $historicos
+     * @return Material
+     */
+    public function setHistoricos($historicos)
+    {
+        $this->historicos = $historicos;
         return $this;
     }
 }

@@ -46,15 +46,18 @@ a {
 
 .card {
     :hover {
-        box-shadow: 8px 9px 10px -4px #E1E1E1;
+        box-shadow: 2px 5px 13px 0px rgba(62,62,62,0.62);
     }
 }
 
 .container .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 0.5em !important;
 
     .current {
-        background-color: lightgray;
+        background-color: #f0ecec;
         padding-right: 0.5em;
         padding-left: 0.5em;
     }
@@ -80,6 +83,25 @@ a {
     font-size: 30px;
 }
 
-thead {
-    background-color: #58bc84;
+.table>:not(caption)>*>* {
+    background: transparent !important;
+}
+
+.barraArriba {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.leyendaD:before {
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height: 10px;
+    background-color: rgba(255, 100, 100, 0.6);
+    margin-right: 5px;
+}
+
+.no-disponible {
+    background-color: rgba(255, 100, 100, 0.6) !important;
 }

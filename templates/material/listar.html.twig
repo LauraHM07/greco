@@ -3,21 +3,25 @@
 {% block title %}GRECO - Material{% endblock %}
 
 {% block content %}
-    <h2 class="titulo">Listado del material</h2>
+    <div class="barraArriba">
+        <h2 class="titulo">Listado del material</h2>
+
+        <small class="leyendaD">No disponible</small>
+    </div>
 
     <table class="table table-hover align-middle">
         <thead>
             <tr>
                 <th>Nombre</th>
                 <th>Descripción</th>
-                <th>Fecha Último Préstamo</th>
-                <th>Fecha Última Devolución</th>
+                <th>Último Préstamo</th>
+                <th>Última Devolución</th>
                 <th>Localización</th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
             {% for material in pagination %}
-                <tr>
+                <tr {% if not material.disponible %}class="no-disponible"{% endif %}>
                     <td>{{ material.nombre }}</td>
                     <td>{{ material.descripcion is null ? '---' : material.descripcion }}</td>
                     <td>{{ material.fechaHoraUltimoPrestamo ? material.fechaHoraUltimoPrestamo|date('Y/m/d') : '---' }}</td>
