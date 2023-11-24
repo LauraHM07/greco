@@ -73,11 +73,32 @@ class Persona
      */
     private $materialesPrestados;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Historial", mappedBy="prestadoPor")
+     * @var Historial|null
+     */
+    private $prestamosRealizados;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Historial", mappedBy="prestadoA")
+     * @var Historial|null
+     */
+    private $prestamosRecibidos;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Historial", mappedBy="devueltoPor")
+     * @var Historial|null
+     */
+    private $devoluciones;
+
     public function __construct()
     {
         $this->materiales = new ArrayCollection();
         $this->materialesResponsable = new ArrayCollection();
         $this->materialesPrestados = new ArrayCollection();
+        $this->prestamosRealizados = new ArrayCollection();
+        $this->prestamosRecibidos = new ArrayCollection();
+        $this->devoluciones = new ArrayCollection();
     }
 
     public function getId(): int
@@ -194,6 +215,39 @@ class Persona
     public function setMaterialesPrestados($materialesPrestados)
     {
         $this->materialesPrestados = $materialesPrestados;
+        return $this;
+    }
+
+    public function getPrestamosRealizados(): ?Historial
+    {
+        return $this->prestamosRealizados;
+    }
+
+    public function setPrestamosRealizados(?Historial $prestamosRealizados): Persona
+    {
+        $this->prestamosRealizados = $prestamosRealizados;
+        return $this;
+    }
+
+    public function getPrestamosRecibidos(): ?Historial
+    {
+        return $this->prestamosRecibidos;
+    }
+
+    public function setPrestamosRecibidos(?Historial $prestamosRecibidos): Persona
+    {
+        $this->prestamosRecibidos = $prestamosRecibidos;
+        return $this;
+    }
+
+    public function getDevoluciones(): ?Historial
+    {
+        return $this->devoluciones;
+    }
+
+    public function setDevoluciones(?Historial $devoluciones): Persona
+    {
+        $this->devoluciones = $devoluciones;
         return $this;
     }
 }
