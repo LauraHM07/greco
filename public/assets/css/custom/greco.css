@@ -11,6 +11,10 @@
     background-position: center;
 }**/
 
+a {
+    text-decoration: none !important;
+}
+
 .titulo {
     margin-top: 1em !important;
     margin-bottom: 0.5em !important;
@@ -23,19 +27,57 @@
     color: white !important;
 }
 
-.navbar-toggler-icon {
-    background-image: var(--toggle-icon) !important;
-}
-
 .navbar-brand{
-    display: flex;
-    flex-direction: row;
     color: white !important;
 }
 
+.container-fluid .navbar-toggler {
+    border: none;
+
+    .fa-bars {
+        color: white;
+    }
+}
+
 .logo {
-    width: 70px;
-    height: 70px;
+    width: 150px;
+    height: 60px;
+}
+
+.card {
+    :hover {
+        box-shadow: 8px 9px 10px -4px #E1E1E1;
+    }
+}
+
+.container .pagination {
+    gap: 0.5em !important;
+
+    .current {
+        background-color: lightgray;
+        padding-right: 0.5em;
+        padding-left: 0.5em;
+    }
+
+    .page a, .next a, .last a, .first a, .previous a {
+        color: black;
+        padding: 0.2em 0.7em 0.2em 0.7em;
+    }
+}
+
+.table tbody td:last-child button {
+    padding-bottom: 0.350rem;
+    padding-top: 0.350rem;
+    padding-left: 0.450rem;
+    padding-right: 0.450rem;
+
+    .fa-solid {
+        font-size: 15px;
+    }
+}
+
+.fa-solid {
+    font-size: 30px;
 }
 
 thead {

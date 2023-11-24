@@ -5,26 +5,38 @@
 {% block content %}
     <h2 class="titulo">Listado de los historiales</h2>
 
-    <table class="table table-bordered table-hover">
-        <thead class="thead-dark">
+    <table class="table table-hover align-middle">
+        <thead>
             <tr>
-                <th>Fecha prestamo</th>
+                <th>ID</th>
+                <th>Fecha Préstamo</th>
                 <th>Fecha Devolución </th>
                 <th>Notas</th>
             </tr>
         </thead>
-        <tbody>
-        {% for historial in historiales %}
-            <tr>
-                <td>{{ historial.fechaHoraPrestramo|date('Y/m/d') }}</td>
-                <td>{{ historial.fechaHoraDevolucion|date('Y/m/d') }}</td>
-                <td>{{ historial.notas is null ? '---' : historial.notas }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">NO hay datos</td>
-            </tr>
-        {% endfor %}
+        <tbody class="table-group-divider">
+            {% for historial in pagination %}
+                <tr>
+                    <td>{{ historial.id }}</td>
+                    <td>{{ historial.fechaHoraPrestramo|date('Y/m/d') }}</td>
+                    <td>{{ historial.fechaHoraDevolucion|date('Y/m/d') }}</td>
+                    <td>{{ historial.notas is null ? '---' : historial.notas }}</td>
+                    <td>
+                        <button type="button" class="btn btn-secondary">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button type="button" class="btn btn-danger">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">NO hay datos</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
+
+    {{ knp_pagination_render(pagination) }}
 {% endblock %}

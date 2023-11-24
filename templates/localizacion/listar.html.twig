@@ -5,28 +5,38 @@
 {% block content %}
     <h2 class="titulo">Listado de las localizaciones</h2>
 
-    <table class="table table-bordered table-hover">
+    <table class="table table-hover align-middle">
         <thead>
-        <tr>
-            <th>Código</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>¿Es padre?</th>
-        </tr>
+            <tr>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>¿Es padre?</th>
+            </tr>
         </thead>
-        <tbody>
-        {% for localizacion in localizaciones %}
-            <tr>
-                <td>{{ localizacion.codigo }}</td>
-                <td>{{ localizacion.nombre }}</td>
-                <td>{{ localizacion.descripcion is null ? ' --- ' : localizacion.descripcion }}</td>
-                <td>{{ localizacion.localizacionPadre ? 'Sí' : 'No' }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">NO hay datos</td>
-            </tr>
-        {% endfor %}
+        <tbody class="table-group-divider">
+            {% for localizacion in pagination %}
+                <tr>
+                    <td>{{ localizacion.codigo }}</td>
+                    <td>{{ localizacion.nombre }}</td>
+                    <td>{{ localizacion.descripcion is null ? ' --- ' : localizacion.descripcion }}</td>
+                    <td>{{ localizacion.localizacionPadre ? 'Sí' : 'No' }}</td>
+                    <td>
+                        <button type="button" class="btn btn-secondary">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button type="button" class="btn btn-danger">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">NO hay datos</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
+
+    {{ knp_pagination_render(pagination) }}
 {% endblock %}
