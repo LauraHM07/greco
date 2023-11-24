@@ -11,8 +11,8 @@
                 <th>Nombre Usuario</th>
                 <th>Nombre</th>
                 <th>Apellidos</th>
-                <th>¿Administrador?</th>
-                <th>¿Gestor préstamos?</th>
+                <th>Administrador</th>
+                <th>Gestor préstamos</th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -21,8 +21,18 @@
                     <td>{{ persona.nombreUsuario }}</td>
                     <td>{{ persona.nombre }}</td>
                     <td>{{ persona.apellidos }}</td>
-                    <td>{{ persona.administrador ? 'Sí' : 'No' }}</td>
-                    <td>{{ persona.gestorPrestamos ? 'Sí' : 'No' }}</td>
+                    <td>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                                   disabled {% if persona.administrador %}checked{% endif %}>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                                   disabled {% if persona.gestorPrestamos %}checked{% endif %}>
+                        </div>
+                    </td>
                     <td>
                         <button type="button" class="btn btn-secondary">
                             <i class="fa-solid fa-pen"></i>

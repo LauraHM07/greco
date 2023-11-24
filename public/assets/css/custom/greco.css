@@ -25,6 +25,10 @@ a {
     background-color: #3f815c;
     padding: 1em !important;
     color: white !important;
+
+    .fa-solid {
+        font-size: 30px;
+    }
 }
 
 .navbar-brand{
@@ -68,19 +72,17 @@ a {
     }
 }
 
-.table tbody td:last-child button {
-    padding-bottom: 0.350rem;
-    padding-top: 0.350rem;
-    padding-left: 0.450rem;
-    padding-right: 0.450rem;
-
-    .fa-solid {
-        font-size: 15px;
+.table tbody td {
+    &:last-child button {
+        padding-bottom: 0.350rem;
+        padding-top: 0.350rem;
+        padding-left: 0.450rem;
+        padding-right: 0.450rem;
     }
 }
 
 .fa-solid {
-    font-size: 30px;
+    font-size: 18px;
 }
 
 .table>:not(caption)>*>* {
@@ -91,15 +93,15 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
 
-.leyendaD:before {
-    content: "";
-    display: inline-block;
-    width: 25px;
-    height: 10px;
-    background-color: rgba(255, 100, 100, 0.6);
-    margin-right: 5px;
+    .leyendaD:before {
+        content: "";
+        display: inline-block;
+        width: 25px;
+        height: 10px;
+        background-color: rgba(255, 100, 100, 0.6);
+        margin-right: 5px;
+    }
 }
 
 .no-disponible {
