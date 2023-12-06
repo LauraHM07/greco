@@ -31,6 +31,17 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('persona_listar') }}">Personal</a>
                         </li>
+
+                        {% if is_granted('ROLE_USUARIO') == false %}
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ path('entrar') }}">Login</a>
+                            </li>
+                        {% endif %}
+                        {% if is_granted('ROLE_USUARIO') %}
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ path('salir') }}">Logout</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

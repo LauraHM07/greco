@@ -19,7 +19,25 @@ class AppFixtures extends Fixture
               'localizacion' => LocalizacionFactory::random()
             ];
         });
-        PersonaFactory::createMany(10);
+
+        PersonaFactory::createOne([
+            'nombre_usuario' => 'ADMIN',
+            'clave' => 'CLAVEADMIN',
+            'nombre' => 'ADMIN',
+            'apellidos' => 'ADMIN',
+            'administrador' => 1,
+            'gestor_prestamos' => 1
+        ]);
+        PersonaFactory::createOne([
+            'nombre_usuario' => 'GESTOR',
+            'clave' => 'CLAVEGESTOR',
+            'nombre' => 'GESTOR',
+            'apellidos' => 'GESTOR',
+            'administrador' => 0,
+            'gestor_prestamos' => 1
+        ]);
+
+        PersonaFactory::createMany(8);
         HistorialFactory::createMany(10);
 
         $manager->flush();

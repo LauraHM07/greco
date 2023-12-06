@@ -51,8 +51,8 @@ final class PersonaFactory extends ModelFactory
             'clave' => self::faker()->password(5, 15),
             'nombre' => self::faker()->firstName(),
             'apellidos' => self::faker()->lastName(),
-            'administrador' => self::faker()->boolean(50),
-            'gestorPrestamos' => self::faker()->boolean(50)
+            'administrador' => false,
+            'gestorPrestamos' => false
         ];
     }
 

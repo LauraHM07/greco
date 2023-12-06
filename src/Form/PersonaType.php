@@ -6,6 +6,10 @@ use App\Entity\Persona;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class PersonaType extends AbstractType
 {
@@ -19,6 +23,8 @@ class PersonaType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Persona::class,
+            'gestor_prestamos' => false,
+            'administrador' => false
         ]);
     }
 }

@@ -21,5 +21,9 @@
         <a href="{{ path('persona_eliminar', {'id': persona.id}) }}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Eliminar persona</a>
     {% endif %}
 
+    {% if persona.id %}
+        <a href="{{ path('persona_cambiar_clave', {'id': persona.id}) }}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Eliminar persona</a>
+    {% endif %}
+
     {{ form_end(form) }}
 {% endblock %}

@@ -3,13 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="persona")
  */
-class Persona
+class Persona implements UserInterface
 {
     /**
      * @ORM\Id
@@ -249,5 +250,39 @@ class Persona
     {
         $this->devoluciones = $devoluciones;
         return $this;
+    }
+
+    public function getRoles()
+    {
+        $roles = ['ROLE_USUARIO'];
+
+        if ($this->isAdministrador()) {
+            $roles[] = 'ROLE_ADMIN';
+        }
+
+        if ($this->isGestorPrestamos()) {
+            $roles[] = 'ROLE_GESTOR';
+        }
+
+        return $roles;
+    }
+
+    public function getPassword()
+    {
+        return $this->clave;
+    }
+
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function getUsername()
+    {
+        return $this->getNombreUsuario();
+    }
+
+    public function eraseCredentials()
+    {
     }
 }
