@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Historial;
+use App\Form\HistorialType;
 use App\Repository\HistorialRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,6 +27,57 @@ class HistorialController extends AbstractController
 
         return $this->render('historial/listar.html.twig', [
             'pagination' => $pagination
+        ]);
+    }
+
+    /**
+     * @Route("/historial/nuevo", name="historial_nuevo")
+     */
+    public function nuevo(Request $request, HistorialRepository $historialRepository) : Response {
+        $historial = $historialRepository->nuevo();
+
+        return $this->modificar($request, $historial, $historialRepository);
+    }
+
+    /**
+     * @Route("/historial/{id}", name="historial_modificar")
+     */
+    public function modificar(Request $request, Historial $historial, HistorialRepository $historialRepository) : Response {
+        $form = $this->createForm(HistorialType::class, $historial);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            try {
+                $historialRepository->guardar();
+                $this->addFlash('exito', 'Cambios guardados con exito');
+                return $this->redirectToRoute('historial_listar');
+            } catch (\Exception $e) {
+                $this->addFlash('error', 'No se han podido guardar los cambios');
+            }
+        }
+        return $this->render('historial/modificar.html.twig', [
+            'historial' => $historial,
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/historial/eliminar/{id}", name="historial_eliminar")
+     */
+    public function eliminar(HistorialRepository $historialRepository, Request $request, Historial $historial) : Response {
+        if ($request->get('confirmar')) {
+            try {
+                $historialRepository->eliminar($historial);
+                $historialRepository->guardar();
+                $this->addFlash('exito', 'Historial eliminado con éxito');
+                return $this->redirectToRoute('historial_listar');
+            } catch (\Exception $e) {
+                $this->addFlash('error', '¡Ocurrió un error al eliminar!');
+            }
+        }
+        return $this->render('historial/eliminar.html.twig', [
+            'historial' => $historial
         ]);
     }
 }

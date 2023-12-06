@@ -12,4 +12,20 @@ class MaterialRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Material::class);
     }
+
+    public function eliminar(Material $material) : void
+    {
+        $this->getEntityManager()->remove($material);
+    }
+
+    public function guardar(){
+        $this->getEntityManager()->flush();
+    }
+
+    public function nuevo() : Material{
+        $material = new Material();
+        $this->getEntityManager()->persist($material);
+
+        return $material;
+    }
 }

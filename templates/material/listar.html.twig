@@ -6,6 +6,11 @@
     <div class="barraArriba">
         <h2 class="titulo">Listado del material</h2>
 
+        <a href="{{ path('material_nuevo') }}" class="btn btn-info">
+            <i class="fa-solid fa-user-plus"></i>
+            Nuevo material
+        </a>
+
         <small class="leyendaD">No disponible</small>
     </div>
 
@@ -28,12 +33,12 @@
                     <td>{{ material.fechaHoraUltimaDevolucion ? material.fechaHoraUltimaDevolucion|date('Y/m/d') : '---' }}</td>
                     <td>{{ material.localizacion.nombre }}
                     <td>
-                        <button type="button" class="btn btn-secondary">
+                        <a href="{{ path('material_modificar', {'id': material.id}) }}" class="btn btn-secondary">
                             <i class="fa-solid fa-pen"></i>
-                        </button>
-                        <button type="button" class="btn btn-danger">
+                        </a>
+                        <a href="{{ path('material_eliminar', {'id': material.id}) }}" class="btn btn-danger">
                             <i class="fa-solid fa-trash-can"></i>
-                        </button>
+                        </a>
                     </td>
                 </tr>
             {% else %}

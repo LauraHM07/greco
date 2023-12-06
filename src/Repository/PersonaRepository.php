@@ -12,4 +12,20 @@ class PersonaRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Persona::class);
     }
+
+    public function eliminar(Persona $persona) : void
+    {
+        $this->getEntityManager()->remove($persona);
+    }
+
+    public function guardar(){
+        $this->getEntityManager()->flush();
+    }
+
+    public function nuevo() : Persona{
+        $persona = new Persona();
+        $this->getEntityManager()->persist($persona);
+
+        return $persona;
+    }
 }

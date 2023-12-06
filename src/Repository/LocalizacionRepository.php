@@ -12,4 +12,20 @@ class LocalizacionRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Localizacion::class);
     }
+
+    public function eliminar(Localizacion $localizacion) : void
+    {
+        $this->getEntityManager()->remove($localizacion);
+    }
+
+    public function guardar(){
+        $this->getEntityManager()->flush();
+    }
+
+    public function nueva() : Localizacion{
+        $localizacion = new Localizacion();
+        $this->getEntityManager()->persist($localizacion);
+
+        return $localizacion;
+    }
 }

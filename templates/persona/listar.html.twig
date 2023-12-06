@@ -3,7 +3,14 @@
 {% block title %}GRECO - Personas{% endblock %}
 
 {% block content %}
-    <h2 class="titulo">Listado del personal</h2>
+    <div class="barraArriba">
+        <h2 class="titulo">Listado del personal</h2>
+
+        <a href="{{ path('persona_nueva') }}" class="btn btn-info">
+            <i class="fa-solid fa-user-plus"></i>
+            Nueva persona
+        </a>
+    </div>
 
     <table class="table table-hover align-middle">
         <thead>
@@ -34,12 +41,12 @@
                         </div>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-secondary">
+                        <a href="{{ path('persona_modificar', {'id': persona.id}) }}" class="btn btn-secondary">
                             <i class="fa-solid fa-pen"></i>
-                        </button>
-                        <button type="button" class="btn btn-danger">
+                        </a>
+                        <a href="{{ path('persona_eliminar', {'id': persona.id}) }}" class="btn btn-danger">
                             <i class="fa-solid fa-trash-can"></i>
-                        </button>
+                        </a>
                     </td>
                 </tr>
             {% else %}

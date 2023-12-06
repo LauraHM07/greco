@@ -6,6 +6,11 @@
     <div class="barraArriba">
         <h2 class="titulo">Listado de las localizaciones</h2>
 
+        <a href="{{ path('localizacion_nueva') }}" class="btn btn-info">
+            <i class="fa-solid fa-user-plus"></i>
+            Nueva localización
+        </a>
+
         <small>
             <i class="fa-solid fa-layer-group" style="margin-right: 0.5em"></i>Localización Padre
         </small>
@@ -17,6 +22,7 @@
                 <th>Código</th>
                 <th>Nombre</th>
                 <th>Descripción</th>
+                <th></th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -32,12 +38,12 @@
                     <td>{{ localizacion.nombre }}</td>
                     <td>{{ localizacion.descripcion is null ? ' --- ' : localizacion.descripcion }}</td>
                     <td>
-                        <button type="button" class="btn btn-secondary">
+                        <a href="{{ path('localizacion_modificar', {'id': localizacion.id}) }}" class="btn btn-secondary">
                             <i class="fa-solid fa-pen"></i>
-                        </button>
-                        <button type="button" class="btn btn-danger">
+                        </a>
+                        <a href="{{ path('localizacion_eliminar', {'id': localizacion.id}) }}"  class="btn btn-danger">
                             <i class="fa-solid fa-trash-can"></i>
-                        </button>
+                        </a>
                     </td>
                 </tr>
             {% else %}

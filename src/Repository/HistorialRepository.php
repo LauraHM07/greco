@@ -12,4 +12,20 @@ class HistorialRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Historial::class);
     }
+
+    public function eliminar(Historial $historial) : void
+    {
+        $this->getEntityManager()->remove($historial);
+    }
+
+    public function guardar(){
+        $this->getEntityManager()->flush();
+    }
+
+    public function nuevo() : Historial{
+        $historial = new Historial();
+        $this->getEntityManager()->persist($historial);
+
+        return $historial;
+    }
 }

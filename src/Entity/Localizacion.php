@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Repository\LocalizacionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -19,7 +20,7 @@ class Localizacion
      * @ORM\Column(type="integer")
      * @var int
      */
-    public $id;
+    private $id;
 
     /**
      * @ORM\Column(type="string")
@@ -55,7 +56,7 @@ class Localizacion
         $this->materiales = new ArrayCollection();
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }

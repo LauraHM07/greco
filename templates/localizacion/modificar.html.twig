@@ -1,0 +1,25 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}GRECO - Localización{% endblock %}
+
+{% block content %}
+    <div class="barraArriba">
+        {% if localizacion.id %}
+            <h2 class="titulo">Modificar Localización</h2>
+        {% else %}
+            <h2 class="titulo">Nueva Localización</h2>
+        {% endif %}
+    </div>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+
+    <a href="{{ path('localizacion_listar') }}" class="btn btn-info"><i class="fa-solid fa-arrow-left"></i> Volver al listado</a>
+    <button type="submit" class="btn btn-success">Guardar cambios</button>
+
+    {% if localizacion.id %}
+        <a href="{{ path('localizacion_eliminar', {'id': localizacion.id}) }}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Eliminar localización</a>
+    {% endif %}
+
+    {{ form_end(form) }}
+{% endblock %}

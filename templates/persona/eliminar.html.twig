@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}GRECO - Persona{% endblock %}
+
+{% block content %}
+    <div class="barraArriba">
+        <h2 class="titulo">Eliminar Persona</h2>
+    </div>
+
+    <div class="alert alert-warning">
+        ¿Está segur@ de que deseas eliminar la persona {{ persona.nombre }} {{ persona.apellidos }}?
+    </div>
+
+    <form method="post">
+        <a href="{{ path('persona_modificar', {'id': persona.id}) }}" class="btn btn-info"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+        <button type="submit" name="confirmar" value="ok" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Confirmar eliminación</button>
+    </form>
+{% endblock %}

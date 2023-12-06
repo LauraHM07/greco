@@ -1,0 +1,25 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}GRECO - Persona{% endblock %}
+
+{% block content %}
+    <div class="barraArriba">
+        {% if persona.id %}
+            <h2 class="titulo">Modificar Persona</h2>
+        {% else %}
+            <h2 class="titulo">Nuevo Persona</h2>
+        {% endif %}
+    </div>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+
+    <a href="{{ path('persona_listar') }}" class="btn btn-info"><i class="fa-solid fa-arrow-left"></i> Volver al listado</a>
+    <button type="submit" class="btn btn-success">Guardar cambios</button>
+
+    {% if persona.id %}
+        <a href="{{ path('persona_eliminar', {'id': persona.id}) }}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Eliminar persona</a>
+    {% endif %}
+
+    {{ form_end(form) }}
+{% endblock %}

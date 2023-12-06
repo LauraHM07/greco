@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}GRECO - Material{% endblock %}
+
+{% block content %}
+    <div class="barraArriba">
+        <h2 class="titulo">Eliminar Material</h2>
+    </div>
+
+    <div class="alert alert-warning">
+        ¿Está segur@ de que deseas eliminar el material {{ material.nombre }}?
+    </div>
+
+    <form method="post">
+        <a href="{{ path('material_modificar', {'id': material.id}) }}" class="btn btn-info"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+        <button type="submit" name="confirmar" value="ok" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Confirmar eliminación</button>
+    </form>
+{% endblock %}
