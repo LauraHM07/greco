@@ -4,12 +4,10 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-/**body {
-    background-color: transparent !important;
-    background-image: var(--background-image) !important;
-    background-size: cover;
-    background-position: center;
-}**/
+body {
+    margin: 0;
+    padding: 0;
+}
 
 a {
     text-decoration: none !important;
@@ -25,14 +23,36 @@ a {
     background-color: #3f815c;
     padding: 1em !important;
     color: white !important;
+    list-style: none !important;
 
     .fa-solid {
         font-size: 30px;
+    }
+
+    .fa-power-off {
+        color: red;
+        font-size: 15px;
+        margin-right: 0.5em;
+    }
+
+    .fa-pen {
+        font-size: 15px;
+        margin-right: 0.5em;
     }
 }
 
 .navbar-brand{
     color: white !important;
+}
+
+.navbar-toggler:hover {
+    .fa-solid {
+        font-size: 35px;
+    }
+}
+
+.navbar-toggler:focus {
+    box-shadow: none !important;
 }
 
 .container-fluid .navbar-toggler {
@@ -48,10 +68,13 @@ a {
     height: 60px;
 }
 
-.card {
-    :hover {
-        box-shadow: 2px 5px 13px 0px rgba(62,62,62,0.62);
-    }
+.logoLogin {
+    width: 120px;
+    height: 120px;
+}
+
+.cardEntidad:hover {
+    box-shadow: 2px 5px 13px 0px rgba(62, 62, 62, 0.62);
 }
 
 .container .pagination {
@@ -106,4 +129,43 @@ a {
 
 .no-disponible {
     background-color: rgba(255, 100, 100, 0.6) !important;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.position-absolute {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-115%);
+    right: 10px;
+    cursor: pointer;
+}
+
+.cardLogin {
+    box-shadow: 1px 1.5px 16px -5px rgba(0,0,0,0.75);
+}
+
+.form-control:focus {
+    box-shadow: none !important;
+}
+
+.toast-body {
+    background-color: #fff !important;
+}
+
+.error {
+    background-color: #f8d7da !important;
+    border-color: #f1aeb5 !important;
+}
+
+.errorTexto {
+    font-weight: bold;
+    color: #e33d4e !important;
+}
+
+.fst-italic {
+    color: grey !important;
+    font-weight: bold !important;
 }

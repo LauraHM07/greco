@@ -12,6 +12,7 @@
     </div>
 
     {{ form_start(form) }}
+    {{ form_errors(form) }}
     {{ form_widget(form) }}
 
     <a href="{{ path('localizacion_listar') }}" class="btn btn-info"><i class="fa-solid fa-arrow-left"></i> Volver al listado</a>
@@ -22,4 +23,11 @@
     {% endif %}
 
     {{ form_end(form) }}
+
+    {# Display error if it exists #}
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error }}
+        </div>
+    {% endif %}
 {% endblock %}

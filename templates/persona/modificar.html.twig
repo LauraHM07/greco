@@ -22,7 +22,7 @@
     {% endif %}
 
     {% if persona.id %}
-        <a href="{{ path('persona_cambiar_clave', {'id': persona.id}) }}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Eliminar persona</a>
+        <a href="{{ path('persona_cambiar_clave', {'id': persona.id}) }}" class="btn btn-info"><i class="fa-solid fa-lock"></i>Cambiar contraseña</a>
     {% endif %}
 
     {{ form_end(form) }}

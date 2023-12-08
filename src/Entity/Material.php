@@ -63,6 +63,7 @@ class Material
 
     /**
      * @ORM\ManyToOne(targetEntity="Localizacion", inversedBy="materiales")
+     * @ORM\JoinColumn(name="localizacion_id", referencedColumnName="id", onDelete="SET NULL")
      * @var Localizacion|null
      */
     private $localizacion;
@@ -88,7 +89,7 @@ class Material
     private $responsable;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Persona")
+     * @ORM\ManyToOne(targetEntity="Persona", inversedBy="materialesPrestados")
      * @ORM\JoinColumn(name="prestado_por_id", referencedColumnName="id", nullable=true)
      * @var Persona|null
      */

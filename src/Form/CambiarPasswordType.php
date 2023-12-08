@@ -15,7 +15,7 @@ class CambiarPasswordType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        if ($options['admin'] === false) {
+        if ($options['administrador'] === false) {
             $builder
                 ->add('claveAntigua', PasswordType::class, [
                     'label' => 'Clave actual',
@@ -49,11 +49,11 @@ class CambiarPasswordType extends AbstractType
                 ]
             ]);
     }
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Persona::class,
-            'gestor_prestamos' => false,
             'administrador' => false
         ]);
     }

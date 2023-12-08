@@ -6,6 +6,7 @@ use App\Repository\LocalizacionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Faker\Factory;
 
 /**
  * @ORM\Entity
@@ -42,7 +43,7 @@ class Localizacion
 
     /**
      * @ORM\OneToMany(targetEntity="Material", mappedBy="localizacion")
-     * @var Material[]|Collection
+     * @var Material[]|Collection|null
      */
     private $materiales;
 
@@ -54,6 +55,21 @@ class Localizacion
 
     public function __construct() {
         $this->materiales = new ArrayCollection();
+        $this->codigo = $this->generateUniqueCode();
+    }
+
+    private function generateUniqueCode(): string
+    {
+        $prefix = $this->generateRandomPrefix();
+        $digits = str_pad(mt_rand(0, 999), 3, '0', STR_PAD_LEFT);
+
+        return $prefix . $digits;
+    }
+
+    private function generateRandomPrefix(): string
+    {
+        $letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        return substr(str_shuffle($letters), 0, 3);
     }
 
     public function getId(): ?int
@@ -95,7 +111,7 @@ class Localizacion
     }
 
     /**
-     * @return Material[]|Collection
+     * @return Material[]|Collection|null
      */
     public function getMateriales()
     {
@@ -103,13 +119,25 @@ class Localizacion
     }
 
     /**
-     * @param Material[]|Collection $materiales
-     * @return Localizacion
+     * Añade material a la localización
+     * @param Material $material
      */
-    public function setMateriales($materiales)
+    public function addMaterial(Material $material)
     {
-        $this->materiales = $materiales;
-        return $this;
+        $this->materiales->add($material);
+
+        $material->setLocalizacion($this);
+    }
+
+    /**
+     * Borra un material de la localización
+     * @param Material $material
+     */
+    public function removeMaterial(Material $material)
+    {
+        $this->materiales->removeElement($material);
+
+        $material->setLocalizacion(null);
     }
 
     /**

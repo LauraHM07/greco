@@ -69,7 +69,7 @@ class Persona implements UserInterface
     private $materialesResponsable;
 
     /**
-     * @ORM\OneToMany(targetEntity="Material", mappedBy="prestadoPor")
+     * @ORM\OneToMany(targetEntity="Material", mappedBy="prestadoPor", orphanRemoval=true)
      * @var Material[]
      */
     private $materialesPrestados;

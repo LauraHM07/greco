@@ -3,22 +3,21 @@
 {% block title %}GRECO - Persona{% endblock %}
 
 {% block content %}
-    <h1>Cambiar contraseña: </h1>
+    <h1>Cambiar contraseña </h1>
 
     {{ form_start(form) }}
     {{ form_widget(form) }}
 
     <div class="form-group row">
-        {% if persona.id %}
-            <div class="col-sm-2">
-                <a href="{{ path('persona_eliminar', {'id': persona.id}) }}">
-                    <button type="button" class="btn btn-danger">Eliminar</button>
-                </a>
-            </div>
-        {% else %}
-        {% endif %}
         <div class="col-sm-10">
-            <a href="{{ path('persona_listar') }}" class="btn btn-info"><i class="fa fa-arrow-left"></i> Volver</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('persona_listar') }}" class="btn btn-info"><i class="fa fa-arrow-left"></i> Volver</a>
+            {% endif %}
+
+            {% if is_granted('ROLE_USUARIO') %}
+                <a href="{{ path('welcome') }}" class="btn btn-info"><i class="fa fa-arrow-left"></i> Volver</a>
+            {% endif %}
+
             <button type="submit" id="modificar_persona_enviar" name="guardar" class="btn-primary btn">
                 <i class="fa fa-check"></i> Guardar
             </button>

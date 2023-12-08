@@ -4,11 +4,11 @@
 
 {% block content %}
     <div class="barraArriba">
-        <h2 class="titulo">Listado de los historiales</h2>
+        <h2 class="titulo">Listado de los préstamos</h2>
 
         <a href="{{ path('historial_nuevo') }}" class="btn btn-info">
             <i class="fa-solid fa-user-plus"></i>
-            Nuevo historial
+            Nuevo préstamo
         </a>
     </div>
 
@@ -20,6 +20,9 @@
                 <th>Fecha Préstamo</th>
                 <th>Fecha Devolución </th>
                 <th>Notas</th>
+                {% if is_granted('ROLE_GESTOR') %}
+                    <th></th>
+                {% endif %}
             </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -29,18 +32,20 @@
                     <td>{{ historial.fechaHoraPrestramo|date('Y/m/d') }}</td>
                     <td>{{ historial.fechaHoraDevolucion|date('Y/m/d') }}</td>
                     <td>{{ historial.notas is null ? '---' : historial.notas }}</td>
-                    <td>
-                        <a href="{{ path('historial_modificar', {'id': historial.id}) }}" class="btn btn-secondary">
-                            <i class="fa-solid fa-pen"></i>
-                        </a>
-                        <a href="{{ path('historial_eliminar', {'id': historial.id}) }}" class="btn btn-danger">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </a>
-                    </td>
+                    {% if is_granted('ROLE_GESTOR') %}
+                        <td>
+                            <a href="{{ path('historial_modificar', {'id': historial.id}) }}" class="btn btn-secondary">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+                            <a href="{{ path('historial_eliminar', {'id': historial.id}) }}" class="btn btn-danger">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </a>
+                        </td>
+                    {% endif %}
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="3">NO hay datos</td>
+                    <td colspan="5">NO hay datos</td>
                 </tr>
             {% endfor %}
         </tbody>

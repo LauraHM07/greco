@@ -6,11 +6,15 @@ use App\Entity\Historial;
 use App\Form\HistorialType;
 use App\Repository\HistorialRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Security("is_granted('ROLE_USUARIO') and is_granted('ROLE_GESTOR')")
+ */
 class HistorialController extends AbstractController
 {
     /**

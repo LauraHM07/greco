@@ -7,16 +7,21 @@ use App\Form\CambiarPasswordType;
 use App\Form\PersonaType;
 use App\Repository\PersonaRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+/**
+ * @Security("is_granted('ROLE_USUARIO')")
+ */
 class PersonaController extends AbstractController
 {
     /**
      * @Route("/persona", name="persona_listar")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function listarPersona(PersonaRepository $personaRepository, Request $request, PaginatorInterface $paginator) : Response {
         $personas = $personaRepository->findAll();
@@ -34,6 +39,7 @@ class PersonaController extends AbstractController
 
     /**
      * @Route("/persona/nueva", name="persona_nueva")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function nuevo(Request $request, PersonaRepository $personaRepository) : Response {
         $persona = $personaRepository->nuevo();
@@ -43,6 +49,7 @@ class PersonaController extends AbstractController
 
     /**
      * @Route("/persona/{id}", name="persona_modificar")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function modificar(Request $request, Persona $persona, PersonaRepository $personaRepository) : Response {
         $form = $this->createForm(PersonaType::class, $persona);
@@ -66,6 +73,7 @@ class PersonaController extends AbstractController
 
     /**
      * @Route("/persona/eliminar/{id}", name="persona_eliminar")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function eliminar(PersonaRepository $personaRepository, Request $request, Persona $persona) : Response {
         if ($request->get('confirmar')) {
@@ -85,13 +93,12 @@ class PersonaController extends AbstractController
 
     /**
      * @Route("persona/clave/{id}", name="persona_cambiar_clave")
+     * @Security("is_granted('ROLE_USUARIO')")
      */
     public function cambiarPasswordEmpleado(Request $request, UserPasswordEncoderInterface $passwordEncoder, PersonaRepository $repository, Persona $persona): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_USUARIO');
-
         $form = $this->createForm(CambiarPasswordType::class, $persona, [
-            'admin' => $this->isGranted('ROLE_ADMIN')
+            'administrador' => $this->isGranted('ROLE_ADMIN')
         ]);
 
         $form->handleRequest($request);

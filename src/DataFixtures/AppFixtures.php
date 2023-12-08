@@ -38,7 +38,6 @@ class AppFixtures extends Fixture
         ]);
 
         PersonaFactory::createMany(8);
-        HistorialFactory::createMany(10);
 
         $manager->flush();
     }

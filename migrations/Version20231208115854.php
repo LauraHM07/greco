@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20231206134906 extends AbstractMigration
+final class Version20231208115854 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -28,7 +28,7 @@ final class Version20231206134906 extends AbstractMigration
         $this->addSql('ALTER TABLE historial ADD CONSTRAINT FK_26950652D6801257 FOREIGN KEY (prestado_a_id) REFERENCES persona (id)');
         $this->addSql('ALTER TABLE historial ADD CONSTRAINT FK_26950652622069E2 FOREIGN KEY (devuelto_por_id) REFERENCES persona (id)');
         $this->addSql('ALTER TABLE historial ADD CONSTRAINT FK_26950652E308AC6F FOREIGN KEY (material_id) REFERENCES material (id)');
-        $this->addSql('ALTER TABLE material ADD CONSTRAINT FK_7CBE7595C851F487 FOREIGN KEY (localizacion_id) REFERENCES localizacion (id)');
+        $this->addSql('ALTER TABLE material ADD CONSTRAINT FK_7CBE7595C851F487 FOREIGN KEY (localizacion_id) REFERENCES localizacion (id) ON DELETE SET NULL');
         $this->addSql('ALTER TABLE material ADD CONSTRAINT FK_7CBE7595F5F88DB9 FOREIGN KEY (persona_id) REFERENCES persona (id)');
         $this->addSql('ALTER TABLE material ADD CONSTRAINT FK_7CBE759553C59D72 FOREIGN KEY (responsable_id) REFERENCES persona (id)');
         $this->addSql('ALTER TABLE material ADD CONSTRAINT FK_7CBE75957FF7B85C FOREIGN KEY (prestado_por_id) REFERENCES persona (id)');
