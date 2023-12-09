@@ -18,7 +18,7 @@ class CambiarPasswordType extends AbstractType
         if ($options['administrador'] === false) {
             $builder
                 ->add('claveAntigua', PasswordType::class, [
-                    'label' => 'Clave actual',
+                    'label' => 'Contraseña actual',
                     'required' => false,
                     'mapped' => false,
                     'constraints' => [
@@ -30,13 +30,13 @@ class CambiarPasswordType extends AbstractType
 
         $builder
             ->add('nuevaClave', RepeatedType::class, [
-                'label' => 'Nueva clave',
+                'label' => 'Nueva contraseña',
                 'required' => true,
                 'type' => PasswordType::class,
                 'mapped' => false,
-                'invalid_message' => 'No coinciden las claves',
+                'invalid_message' => 'No coinciden las contraseñas',
                 'first_options' => [
-                    'label' => 'Nueva clave',
+                    'label' => 'Nueva contraseña',
                     'constraints' => [
                         new NotBlank([
                             'groups' => ['password']
@@ -44,7 +44,7 @@ class CambiarPasswordType extends AbstractType
                     ]
                 ],
                 'second_options' => [
-                    'label' => 'Repite nueva clave',
+                    'label' => 'Repite nueva contraseña',
                     'required' => true
                 ]
             ]);
