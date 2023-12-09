@@ -50,11 +50,13 @@ class MaterialController extends AbstractController
      */
     public function modificar(Request $request, Material $material, MaterialRepository $materialRepository) : Response {
         $form = $this->createForm(MaterialType::class, $material);
-
         $form->handleRequest($request);
+
 
         if($form->isSubmitted() && $form->isValid()) {
             try {
+                $material->setDisponible($material->isDisponible());
+
                 $materialRepository->guardar();
                 $this->addFlash('exito', 'Cambios guardados con exito');
                 return $this->redirectToRoute('material_listar');

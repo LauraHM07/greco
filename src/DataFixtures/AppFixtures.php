@@ -32,25 +32,25 @@ class AppFixtures extends Fixture
         $sala11 = LocalizacionFactory::createOne([
             'codigo' => 'PHE049',
             'nombre' => 'Sala 1',
-            'descripcion' => 'Piso 1',
+            'descripcion' => null,
             'localizacionPadre' => $piso1
         ]);
         $sala21 = LocalizacionFactory::createOne([
             'codigo' => 'VJS966',
             'nombre' => 'Sala 2',
-            'descripcion' => 'Piso 1',
+            'descripcion' => null,
             'localizacionPadre' => $piso1
         ]);
         $sala12 = LocalizacionFactory::createOne([
             'codigo' => 'QAV756',
             'nombre' => 'Sala 1',
-            'descripcion' => 'Piso 2',
+            'descripcion' => null,
             'localizacionPadre' => $piso2
         ]);
         $sala22 = LocalizacionFactory::createOne([
             'codigo' => 'UID956',
             'nombre' => 'Sala 2',
-            'descripcion' => 'Piso 2',
+            'descripcion' => null,
             'localizacionPadre' => $piso2
         ]);
 
@@ -59,36 +59,36 @@ class AppFixtures extends Fixture
         LocalizacionFactory::createOne([
             'codigo' => 'GTE990',
             'nombre' => 'Estantería B',
-            'descripcion' => 'Piso 1 - Sala 1',
+            'descripcion' => null,
             'localizacionPadre' => $sala11
         ]);
         LocalizacionFactory::createOne([
             'codigo' => 'SBS284',
             'nombre' => 'Gabinete Secundario',
-            'descripcion' => 'Piso 1 - Sala 2',
+            'descripcion' => null,
             'localizacionPadre' => $sala21
         ]);
         LocalizacionFactory::createOne([
             'codigo' => 'UBQ480',
             'nombre' => 'Armario Rojo',
-            'descripcion' => 'Piso 1 - Sala 2',
-            'localizacionPadre' => $sala21
+            'descripcion' => null,
+            'localizacionPadre' => $sala12
         ]);
         LocalizacionFactory::createOne([
             'codigo' => 'LSP994',
             'nombre' => 'Armario Azul',
-            'descripcion' => 'Piso 2 - Sala 2',
+            'descripcion' => null,
             'localizacionPadre' => $sala22
         ]);
 
         // --------- MATERIALES
 
-        $caja1 = MaterialFactory::createOne([
-            'nombre' => 'Caja 1',
+        $cajaPizarras = MaterialFactory::createOne([
+            'nombre' => 'Caja Pizarra',
             'descripcion' => null,
             'fechaHoraUltimoPrestamo' => null,
             'fechaHoraUltimaDevolucion' => null,
-            'disponible' => false,
+            'disponible' => true,
             'fechaAlta' => null,
             'fechaBaja' => null,
             'localizacion' => LocalizacionFactory::random(),
@@ -99,16 +99,128 @@ class AppFixtures extends Fixture
             'historicos' => null
         ]);
 
-        $caja2 = MaterialFactory::createOne([
-            'nombre' => 'Caja 2',
+        $cajaCables = MaterialFactory::createOne([
+            'nombre' => 'Caja Cables',
             'descripcion' => null,
             'fechaHoraUltimoPrestamo' => null,
             'fechaHoraUltimaDevolucion' => null,
-            'disponible' => false,
+            'disponible' => true,
             'fechaAlta' => null,
             'fechaBaja' => null,
             'localizacion' => LocalizacionFactory::random(),
             'materialPadre' => null,
+            'persona' => null,
+            'responsable' => null,
+            'prestadoPor' => null,
+            'historicos' => null
+        ]);
+
+        $tizas = MaterialFactory::createOne([
+            'nombre' => 'Tizas',
+            'descripcion' => 'Caja con 10 tizas',
+            'fechaHoraUltimoPrestamo' => null,
+            'fechaHoraUltimaDevolucion' => null,
+            'disponible' => true,
+            'fechaAlta' => null,
+            'fechaBaja' => null,
+            'localizacion' => LocalizacionFactory::random(),
+            'materialPadre' => $cajaPizarras,
+            'persona' => null,
+            'responsable' => null,
+            'prestadoPor' => null,
+            'historicos' => null
+        ]);
+
+        $borradorPizarra = MaterialFactory::createOne([
+            'nombre' => 'Borradores Pizarra',
+            'descripcion' => 'Borrador pizarra',
+            'fechaHoraUltimoPrestamo' => null,
+            'fechaHoraUltimaDevolucion' => null,
+            'disponible' => true,
+            'fechaAlta' => null,
+            'fechaBaja' => null,
+            'localizacion' => LocalizacionFactory::random(),
+            'materialPadre' => $cajaPizarras,
+            'persona' => null,
+            'responsable' => null,
+            'prestadoPor' => null,
+            'historicos' => null
+        ]);
+
+        $cableHDMI = MaterialFactory::createOne([
+            'nombre' => 'Cable HDMI',
+            'descripcion' => '1.5 metros',
+            'fechaHoraUltimoPrestamo' => null,
+            'fechaHoraUltimaDevolucion' => null,
+            'disponible' => true,
+            'fechaAlta' => null,
+            'fechaBaja' => null,
+            'localizacion' => LocalizacionFactory::random(),
+            'materialPadre' => $cajaCables,
+            'persona' => null,
+            'responsable' => null,
+            'prestadoPor' => null,
+            'historicos' => null
+        ]);
+
+        $cableRed = MaterialFactory::createOne([
+            'nombre' => 'Cable Red',
+            'descripcion' => '3 metros',
+            'fechaHoraUltimoPrestamo' => null,
+            'fechaHoraUltimaDevolucion' => null,
+            'disponible' => true,
+            'fechaAlta' => null,
+            'fechaBaja' => null,
+            'localizacion' => LocalizacionFactory::random(),
+            'materialPadre' => $cajaCables,
+            'persona' => null,
+            'responsable' => null,
+            'prestadoPor' => null,
+            'historicos' => null
+        ]);
+
+        $cableUSB = MaterialFactory::createOne([
+            'nombre' => 'Cable USB',
+            'descripcion' => '100 centímetros',
+            'fechaHoraUltimoPrestamo' => null,
+            'fechaHoraUltimaDevolucion' => null,
+            'disponible' => true,
+            'fechaAlta' => null,
+            'fechaBaja' => null,
+            'localizacion' => LocalizacionFactory::random(),
+            'materialPadre' => $cajaCables,
+            'persona' => null,
+            'responsable' => null,
+            'prestadoPor' => null,
+            'historicos' => null
+        ]);
+
+        $cableVGA = MaterialFactory::createOne([
+            'nombre' => 'Cable VGA',
+            'descripcion' => '1 metro',
+            'fechaHoraUltimoPrestamo' => null,
+            'fechaHoraUltimaDevolucion' => null,
+            'disponible' => true,
+            'fechaAlta' => null,
+            'fechaBaja' => null,
+            'localizacion' => LocalizacionFactory::random(),
+            'materialPadre' => $cajaCables,
+            'persona' => null,
+            'responsable' => null,
+            'prestadoPor' => null,
+            'historicos' => null
+        ]);
+
+        $cableDVI = MaterialFactory::createOne([
+            'nombre' => 'Cable DVI',
+            'descripcion' => '1 metro',
+            'fechaHoraUltimoPrestamo' => null,
+            'fechaHoraUltimaDevolucion' => null,
+            'disponible' => true,
+            'fechaAlta' => null,
+            'fechaBaja' => null,
+            'localizacion' => LocalizacionFactory::random(),
+            'materialPadre' => $cajaCables,
             'persona' => null,
             'responsable' => null,
             'prestadoPor' => null,

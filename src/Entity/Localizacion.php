@@ -82,6 +82,22 @@ class Localizacion
         return substr(str_shuffle($letters), 0, 3);
     }
 
+    public function __toString()
+    {
+        return $this->getNombre();
+    }
+
+    public function getNombreCompleto(): string
+    {
+        $nombreCompleto = $this->getNombre();
+
+        if ($this->getLocalizacionPadre() !== null) {
+            $nombreCompleto .= ' (' . $this->getLocalizacionPadre()->getNombre() . ')';
+        }
+
+        return $nombreCompleto;
+    }
+
     // --------- ID
 
     public function getId(): ?int

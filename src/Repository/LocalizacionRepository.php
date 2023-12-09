@@ -36,4 +36,21 @@ class LocalizacionRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findLocalizacionesSinPadre()
+    {
+        return $this->createQueryBuilder('l')
+            ->where('l.localizacionPadre IS NULL')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findLocalizacionesConPadreEHijos()
+    {
+        return $this->createQueryBuilder('l')
+            ->where('l.localizacionPadre IS NOT NULL')
+            ->andWhere('l.subLocalizaciones IS NOT EMPTY')
+            ->getQuery()
+            ->getResult();
+    }
 }

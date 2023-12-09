@@ -176,12 +176,34 @@ class Material
 
     public function isDisponible(): bool
     {
-        return $this->disponible;
+        if (!$this->disponible) {
+            return false;
+        }
+
+        foreach ($this->getSubMateriales() as $subMaterial) {
+            if (!$subMaterial->isDisponible()) {
+                return false;
+            }
+        }
+
+        // Si llega aquí
+
+        return true;
     }
 
     public function setDisponible(bool $disponible): Material
     {
-        $this->disponible = $disponible;
+        if ($this->disponible !== $disponible) {
+
+            if (!$disponible) {
+                foreach ($this->getSubMateriales() as $subMaterial) {
+                    $subMaterial->setDisponible($disponible);
+                }
+            }
+
+            $this->disponible = $disponible;
+        }
+
         return $this;
     }
 
