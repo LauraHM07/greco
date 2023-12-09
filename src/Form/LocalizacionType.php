@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Localizacion;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -30,17 +31,13 @@ class LocalizacionType extends AbstractType
 
                 // PADRE CHECKED
 
-                $localizacionPadre = $data->getLocalizacionPadre();
                 $tieneSubLocalizaciones = !$data->getSubLocalizaciones()->isEmpty();
-                $isChecked = $localizacionPadre === null || $tieneSubLocalizaciones;
+                $isChecked = $tieneSubLocalizaciones && $data->getId() !== null;
 
                 $form->add('localizacionPadre', CheckboxType::class, [
                     'label' => '¿Es Localización Padre?',
                     'required' => false,
                     'mapped' => false,
-                    'attr' => [
-                        'class' => 'mb-4',
-                    ],
                     'data' => $isChecked,
                 ]);
 

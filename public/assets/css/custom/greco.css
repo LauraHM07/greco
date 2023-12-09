@@ -21,7 +21,7 @@ a {
 .custom-navbar {
     box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
     background-color: #3f815c;
-    padding: 1em !important;
+    padding: 0.7em !important;
     color: white !important;
     list-style: none !important;
 
@@ -74,7 +74,7 @@ a {
 }
 
 .cardEntidad:hover {
-    box-shadow: 2px 5px 13px 0px rgba(62, 62, 62, 0.62);
+    box-shadow: 0px 3px 13px 0px rgba(62, 62, 62, 0.62);
 }
 
 .container .pagination {
@@ -168,4 +168,14 @@ a {
 .fst-italic {
     color: grey !important;
     font-weight: bold !important;
+}
+
+form .btn i {
+    font-size: 15px !important;
+    margin-right: 0.5em !important;
+}
+
+.alert i {
+    font-size: 15px !important;
+    margin-right: 0.5em !important;
 }

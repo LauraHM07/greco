@@ -14,11 +14,11 @@
     {{ form_start(form) }}
     {{ form_widget(form) }}
 
-    <a href="{{ path('localizacion_listar') }}" class="btn btn-info"><i class="fa-solid fa-arrow-left"></i>Volver al listado</a>
-    <button type="submit" class="btn btn-success">Guardar cambios</button>
+    <a href="{{ path('localizacion_listar') }}" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i>Volver</a>
+    <button type="submit" class="btn btn-success"><i class="fa fa-check"></i>Guardar</button>
 
     {% if localizacion.id %}
-        <a href="{{ path('localizacion_eliminar', {'id': localizacion.id}) }}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Eliminar localización</a>
+        <a href="{{ path('localizacion_eliminar', {'id': localizacion.id}) }}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Eliminar</a>
     {% endif %}
 
     {{ form_end(form) }}

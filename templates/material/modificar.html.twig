@@ -14,11 +14,11 @@
     {{ form_start(form) }}
     {{ form_widget(form) }}
 
-    <a href="{{ path('material_listar') }}" class="btn btn-info"><i class="fa-solid fa-arrow-left"></i> Volver al listado</a>
-    <button type="submit" class="btn btn-success">Guardar cambios</button>
+    <a href="{{ path('material_listar') }}" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i>Volver</a>
+    <button type="submit" class="btn btn-success"><i class="fa fa-check"></i>Guardar</button>
 
     {% if material.id %}
-        <a href="{{ path('material_eliminar', {'id': material.id}) }}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Eliminar material</a>
+        <a href="{{ path('material_eliminar', {'id': material.id}) }}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Eliminar</a>
     {% endif %}
 
     {{ form_end(form) }}

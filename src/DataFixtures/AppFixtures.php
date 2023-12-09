@@ -17,13 +17,13 @@ class AppFixtures extends Fixture
         $piso1 = LocalizacionFactory::createOne([
             'codigo' => 'ALJ731',
             'nombre' => 'Piso 1',
-            'descripcion' => '',
+            'descripcion' => null,
             'localizacionPadre' => null
         ]);
         $piso2 = LocalizacionFactory::createOne([
             'codigo' => 'YUY612',
             'nombre' => 'Piso 2',
-            'descripcion' => '',
+            'descripcion' => null,
             'localizacionPadre' => null
         ]);
 
@@ -65,13 +65,13 @@ class AppFixtures extends Fixture
         LocalizacionFactory::createOne([
             'codigo' => 'SBS284',
             'nombre' => 'Gabinete Secundario',
-            'descripcion' => 'Piso 2 - Sala 1',
+            'descripcion' => 'Piso 1 - Sala 2',
             'localizacionPadre' => $sala21
         ]);
         LocalizacionFactory::createOne([
             'codigo' => 'UBQ480',
             'nombre' => 'Armario Rojo',
-            'descripcion' => 'Piso 2 - Sala 1',
+            'descripcion' => 'Piso 1 - Sala 2',
             'localizacionPadre' => $sala21
         ]);
         LocalizacionFactory::createOne([

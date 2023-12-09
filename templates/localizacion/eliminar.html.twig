@@ -8,11 +8,26 @@
     </div>
 
     <div class="alert alert-warning">
-        ¿Está segur@ de que deseas eliminar la localización {{ localizacion.nombre }}?
+        <i class="fa-solid fa-triangle-exclamation"></i> ¿Está segur@ de que deseas eliminar la localización?
     </div>
 
+    {% if localizacion.localizacionPadre is null %}
+        <div class="alert alert-primary">
+            <i class="fa-solid fa-circle-info"></i> Se borrarán sus localizaciones hijas.
+        </div>
+    {% endif %}
+
+    <h5>Datos de la localización</h5>
+    <ul>
+        <li>{{ localizacion.codigo }}</li>
+        <li>{{ localizacion.nombre }}</li>
+        {% if localizacion.descripcion is not null %}
+            <li>{{ localizacion.descripcion }}</li>
+        {% endif %}
+    </ul>
+
     <form method="post">
-        <a href="{{ path('localizacion_modificar', {'id': localizacion.id}) }}" class="btn btn-info"><i class="fa-solid fa-arrow-left"></i> Volver</a>
-        <button type="submit" name="confirmar" value="ok" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Confirmar eliminación</button>
+        <a href="{{ path('localizacion_modificar', {'id': localizacion.id}) }}" class="btn btn-info"><i class="fa-solid fa-arrow-left"></i>Volver</a>
+        <button type="submit" name="confirmar" value="ok" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Eliminar</button>
     </form>
 {% endblock %}
