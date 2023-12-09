@@ -48,15 +48,25 @@ class Localizacion
     private $materiales;
 
     /**
-     * @ORM\Column(type="boolean")
-     * @var bool
+     * @ORM\ManyToOne(targetEntity="Localizacion", inversedBy="subLocalizaciones")
+     * @ORM\JoinColumn(name="localizacion_padre_id", referencedColumnName="id", nullable=true)
+     * @var Localizacion|null
      */
     private $localizacionPadre;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Localizacion", mappedBy="localizacionPadre", cascade={"remove"})
+     * @var Localizacion[]|Collection
+     */
+    private $subLocalizaciones;
+
     public function __construct() {
         $this->materiales = new ArrayCollection();
+        $this->subLocalizaciones = new ArrayCollection();
         $this->codigo = $this->generateUniqueCode();
     }
+
+    // --------- GENERAR CÓDIGO CON REGEX AL CREAR UNA LOCALIZACIÓN
 
     private function generateUniqueCode(): string
     {
@@ -72,10 +82,14 @@ class Localizacion
         return substr(str_shuffle($letters), 0, 3);
     }
 
+    // --------- ID
+
     public function getId(): ?int
     {
         return $this->id;
     }
+
+    // --------- CÓDIGO
 
     public function getCodigo(): string
     {
@@ -88,6 +102,8 @@ class Localizacion
         return $this;
     }
 
+    // --------- NOMBRE
+
     public function getNombre(): string
     {
         return $this->nombre;
@@ -98,6 +114,8 @@ class Localizacion
         $this->nombre = $nombre;
         return $this;
     }
+
+    // --------- DESCRIPCIÓN
 
     public function getDescripcion(): ?string
     {
@@ -110,6 +128,66 @@ class Localizacion
         return $this;
     }
 
+    // --------- LOCALIZACIÓN PADRE
+
+    public function getLocalizacionPadre(): ?Localizacion
+    {
+        return $this->localizacionPadre;
+    }
+
+    public function setLocalizacionPadre(?Localizacion $localizacionPadre): Localizacion
+    {
+        $this->localizacionPadre = $localizacionPadre;
+        return $this;
+    }
+
+    // --------- SUBLOCALIZACIÓN
+
+    /**
+     * @return Localizacion[]|ArrayCollection|Collection
+     */
+    public function getSubLocalizaciones()
+    {
+        return $this->subLocalizaciones;
+    }
+
+    /**
+     * @param Localizacion[]|ArrayCollection|Collection $subLocalizaciones
+     * @return Localizacion
+     */
+    public function setSubLocalizaciones($subLocalizaciones)
+    {
+        $this->subLocalizaciones = $subLocalizaciones;
+        return $this;
+    }
+
+    // --------- MANTENIMIENTO SUBLOCALIZACIONES
+
+    public function addSubLocalizacion(Localizacion $subLocalizacion): self
+    {
+        if (!$this->subLocalizaciones->contains($subLocalizacion)) {
+            $this->subLocalizaciones[] = $subLocalizacion;
+            $subLocalizacion->setLocalizacionPadre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSubLocalizacion(Localizacion $subLocalizacion): self
+    {
+        if ($this->subLocalizaciones->contains($subLocalizacion)) {
+            $this->subLocalizaciones->removeElement($subLocalizacion);
+
+            if ($subLocalizacion->getLocalizacionPadre() === $this) {
+                $subLocalizacion->setLocalizacionPadre(null);
+            }
+        }
+
+        return $this;
+    }
+
+    // --------- MATERIALES
+
     /**
      * @return Material[]|Collection|null
      */
@@ -117,6 +195,8 @@ class Localizacion
     {
         return $this->materiales;
     }
+
+    // --------- MANTENIMIENTO MATERIALES
 
     /**
      * Añade material a la localización
@@ -138,21 +218,5 @@ class Localizacion
         $this->materiales->removeElement($material);
 
         $material->setLocalizacion(null);
-    }
-
-    /**
-     * @return bool
-     */
-    public function isLocalizacionPadre()
-    {
-        return $this->localizacionPadre;
-    }
-
-    /**
-     * @param bool $localizacionPadre
-     */
-    public function setLocalizacionPadre(bool $localizacionPadre)
-    {
-        $this->localizacionPadre = $localizacionPadre;
     }
 }

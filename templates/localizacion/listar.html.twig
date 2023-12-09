@@ -6,14 +6,12 @@
     <div class="barraArriba">
         <h2 class="titulo">Listado de las localizaciones</h2>
 
-        <small>
-            <i class="fa-solid fa-layer-group" style="margin-right: 0.5em"></i>Localización Padre
-        </small>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('localizacion_nueva') }}" class="btn btn-info">
 
-        <a href="{{ path('localizacion_nueva') }}" class="btn btn-info">
-            <i class="fa-solid fa-user-plus"></i>
-            Nueva localización
-        </a>
+                Nueva localización
+            </a>
+        {% endif %}
     </div>
 
     <table class="table table-hover align-middle">
@@ -31,14 +29,10 @@
             {% for localizacion in pagination %}
                 <tr>
                     <td>
-                        {% if localizacion.localizacionPadre %}
-                            <i class="fa-solid fa-layer-group"></i> {{ localizacion.codigo }}
-                        {% else %}
-                            {{ localizacion.codigo }}
-                        {% endif %}
+                        {{ localizacion.codigo }}
                     </td>
                     <td>{{ localizacion.nombre }}</td>
-                    <td>{{ localizacion.descripcion is null ? ' --- ' : localizacion.descripcion }}</td>
+                    <td>{{ localizacion.descripcion is null ? ' ' : localizacion.descripcion }}</td>
                     {% if is_granted('ROLE_ADMIN') %}
                         <td>
                             <a href="{{ path('localizacion_modificar', {'id': localizacion.id}) }}" class="btn btn-secondary">

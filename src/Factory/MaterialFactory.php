@@ -49,8 +49,6 @@ final class MaterialFactory extends ModelFactory
         return [
             'nombre' => self::faker()->unique()->word(),
             'descripcion' => self::faker()->optional(0.5)->sentence(6),
-            'fechaHoraUltimoPrestamo' => self::faker()->optional(0.5)->dateTimeThisDecade(),
-            'fechaHoraUltimaDevolucion' => self::faker()->optional(0.5)->dateTimeThisDecade(),
             'disponible' => self::faker()->boolean(50),
             'fechaAlta' => self::faker()->optional(0.5)->dateTimeThisDecade(),
             'fechaBaja' => self::faker()->optional(0.5)->dateTimeThisDecade(),

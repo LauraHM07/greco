@@ -28,4 +28,12 @@ class LocalizacionRepository extends ServiceEntityRepository
 
         return $localizacion;
     }
+
+    public function findAllLocalizaciones()
+    {
+        return $this->createQueryBuilder('l')
+            ->orderBy('l.nombre', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }
