@@ -10,7 +10,6 @@
 
         {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path('material_nuevo') }}" class="btn btn-info">
-                <i class="fa-solid fa-user-plus"></i>
                 Nuevo material
             </a>
         {% endif %}
@@ -20,10 +19,10 @@
         <thead>
             <tr>
                 <th>Nombre</th>
+                <th>Localización</th>
                 <th>Descripción</th>
                 <th>Último Préstamo</th>
                 <th>Última Devolución</th>
-                <th>Localización</th>
                 {% if is_granted('ROLE_ADMIN') %}
                     <th></th>
                 {% endif %}
@@ -33,10 +32,10 @@
             {% for material in pagination %}
                 <tr {% if not material.disponible %}class="no-disponible"{% endif %}>
                     <td>{{ material.nombre }}</td>
+                    <td>{{ material.localizacion is null ? '' : material.localizacion.nombre }}</td>
                     <td>{{ material.descripcion is null ? '' : material.descripcion }}</td>
                     <td>{{ material.fechaHoraUltimoPrestamo ? material.fechaHoraUltimoPrestamo|date('Y/m/d') : '' }}</td>
                     <td>{{ material.fechaHoraUltimaDevolucion ? material.fechaHoraUltimaDevolucion|date('Y/m/d') : '' }}</td>
-                    <td>{{ material.localizacion is null ? '' : material.localizacion.nombre }}</td>
                     {% if is_granted('ROLE_ADMIN') %}
                         <td>
                             <a href="{{ path('material_modificar', {'id': material.id}) }}" class="btn btn-secondary">

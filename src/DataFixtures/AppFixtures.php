@@ -83,11 +83,37 @@ class AppFixtures extends Fixture
 
         // --------- MATERIALES
 
-        MaterialFactory::createMany(10, function() {
-            return [
-              'localizacion' => LocalizacionFactory::random()
-            ];
-        });
+        $caja1 = MaterialFactory::createOne([
+            'nombre' => 'Caja 1',
+            'descripcion' => null,
+            'fechaHoraUltimoPrestamo' => null,
+            'fechaHoraUltimaDevolucion' => null,
+            'disponible' => false,
+            'fechaAlta' => null,
+            'fechaBaja' => null,
+            'localizacion' => LocalizacionFactory::random(),
+            'materialPadre' => null,
+            'persona' => null,
+            'responsable' => null,
+            'prestadoPor' => null,
+            'historicos' => null
+        ]);
+
+        $caja2 = MaterialFactory::createOne([
+            'nombre' => 'Caja 2',
+            'descripcion' => null,
+            'fechaHoraUltimoPrestamo' => null,
+            'fechaHoraUltimaDevolucion' => null,
+            'disponible' => false,
+            'fechaAlta' => null,
+            'fechaBaja' => null,
+            'localizacion' => LocalizacionFactory::random(),
+            'materialPadre' => null,
+            'persona' => null,
+            'responsable' => null,
+            'prestadoPor' => null,
+            'historicos' => null
+        ]);
 
         // --------- ADMIN Y GESTOR
 

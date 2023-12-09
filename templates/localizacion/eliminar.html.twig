@@ -19,10 +19,10 @@
 
     <h5>Datos de la localización</h5>
     <ul>
-        <li>{{ localizacion.codigo }}</li>
-        <li>{{ localizacion.nombre }}</li>
+        <li>Código: {{ localizacion.codigo }}</li>
+        <li>Nombre: {{ localizacion.nombre }}</li>
         {% if localizacion.descripcion is not null %}
-            <li>{{ localizacion.descripcion }}</li>
+            <li>Descripción: {{ localizacion.descripcion }}</li>
         {% endif %}
     </ul>
 

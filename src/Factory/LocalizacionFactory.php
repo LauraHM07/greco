@@ -49,8 +49,7 @@ final class LocalizacionFactory extends ModelFactory
         return [
             'codigo' => self::faker()->regexify('[A-Z]{3}\d{3}'),
             'nombre' => self::faker()->unique()->word(),
-            'descripcion' => self::faker()->optional(0.5)->sentence(6),
-            'localizacionPadre' =>  self::faker()->boolean(50)
+            'descripcion' => self::faker()->optional(0.5)->sentence(6)
         ];
     }
 

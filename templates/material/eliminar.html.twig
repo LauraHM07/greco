@@ -8,11 +8,26 @@
     </div>
 
     <div class="alert alert-warning">
-        ¿Está segur@ de que deseas eliminar el material {{ material.nombre }}?
+        <i class="fa-solid fa-triangle-exclamation"></i> ¿Está segur@ de que deseas eliminar el material?
     </div>
 
+    {% if material.materialPadre is null %}
+        <div class="alert alert-primary">
+            <i class="fa-solid fa-circle-info"></i> Se borrarán sus materiales hijos.
+        </div>
+    {% endif %}
+
+    <h5>Datos del material</h5>
+    <ul>
+        <li>Nombre: {{ material.nombre }}</li>
+        <li>Localización: {{ material.localizacion.nombre }}</li>
+        {% if material.descripcion is not null %}
+            <li>Descripción: {{ material.descripcion }}</li>
+        {% endif %}
+    </ul>
+
     <form method="post">
-        <a href="{{ path('material_modificar', {'id': material.id}) }}" class="btn btn-info"><i class="fa-solid fa-arrow-left"></i> Volver</a>
-        <button type="submit" name="confirmar" value="ok" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Confirmar eliminación</button>
+        <a href="{{ path('material_modificar', {'id': material.id}) }}" class="btn btn-info"><i class="fa-solid fa-arrow-left"></i>Volver</a>
+        <button type="submit" name="confirmar" value="ok" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Eliminar</button>
     </form>
 {% endblock %}

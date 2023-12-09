@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -69,10 +70,17 @@ class Material
     private $localizacion;
 
     /**
-     * @ORM\Column(type="boolean")
-     * @var bool
+     * @ORM\ManyToOne(targetEntity="Material", inversedBy="subMaterial")
+     * @ORM\JoinColumn(name="material_padre_id", referencedColumnName="id", nullable=true)
+     * @var Material|null
      */
     private $materialPadre;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Material", mappedBy="materialPadre", cascade={"remove"})
+     * @var Material[]|Collection
+     */
+    private $subMateriales;
 
     /**
      * @ORM\ManyToOne(targetEntity="Persona", inversedBy="materiales")
@@ -104,12 +112,17 @@ class Material
     public function __construct()
     {
         $this->historicos = new ArrayCollection();
+        $this->subMateriales = new ArrayCollection();
     }
+
+    // --------- ID
 
     public function getId(): ?int
     {
         return $this->id;
     }
+
+    // --------- NOMBRE
 
     public function getNombre(): string
     {
@@ -122,6 +135,8 @@ class Material
         return $this;
     }
 
+    // --------- DESCRIPCIÓN
+
     public function getDescripcion(): ?string
     {
         return $this->descripcion;
@@ -132,6 +147,8 @@ class Material
         $this->descripcion = $descripcion;
         return $this;
     }
+
+    // --------- FECHAS
 
     public function getFechaHoraUltimoPrestamo(): ?\DateTime
     {
@@ -155,6 +172,8 @@ class Material
         return $this;
     }
 
+    // --------- DISPONIBLE
+
     public function isDisponible(): bool
     {
         return $this->disponible;
@@ -165,6 +184,8 @@ class Material
         $this->disponible = $disponible;
         return $this;
     }
+
+    // --------- FECHAS
 
     public function getFechaAlta(): ?\DateTime
     {
@@ -188,6 +209,8 @@ class Material
         return $this;
     }
 
+    // --------- LOCALIZACIÓN
+
     public function getLocalizacion(): ?Localizacion
     {
         return $this->localizacion;
@@ -200,18 +223,62 @@ class Material
         return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function isMaterialPadre()
+    // --------- MATERIAL PADRE
+
+    public function getMaterialPadre(): ?Material
     {
         return $this->materialPadre;
     }
 
-
-    public function setMaterialPadre(bool $materialPadre)
+    public function setMaterialPadre(?Material $materialPadre): Material
     {
         $this->materialPadre = $materialPadre;
+        return $this;
+    }
+
+    // --------- SUBMATERIALES
+
+    /**
+     * @return Material[]|ArrayCollection|Collection
+     */
+    public function getSubMateriales()
+    {
+        return $this->subMateriales;
+    }
+
+    /**
+     * @param Material[]|ArrayCollection|Collection $subMateriales
+     * @return Material
+     */
+    public function setSubMateriales($subMateriales)
+    {
+        $this->subMateriales = $subMateriales;
+        return $this;
+    }
+
+    // --------- MANTENIMIENTO SUBMATERIALES
+
+    public function addSubMaterial(Material $subMaterial): self
+    {
+        if (!$this->subMateriales->contains($subMaterial)) {
+            $this->subMateriales[] = $subMaterial;
+            $subMaterial->setMaterialPadre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSubMaterial(Material $subMaterial): self
+    {
+        if ($this->subMateriales->contains($subMaterial)) {
+            $this->subMateriales->removeElement($subMaterial);
+
+            if ($subMaterial->getMaterialPadre() === $this) {
+                $subMaterial->setMaterialPadre(null);
+            }
+        }
+
+        return $this;
     }
 
     public function getPersona(): ?Persona
