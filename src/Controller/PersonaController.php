@@ -59,10 +59,12 @@ class PersonaController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             try {
                 $personaRepository->guardar();
-                $this->addFlash('exito', 'Cambios guardados con exito');
+
+                flash()->addSuccess('Cambios guardados con éxito.');
+
                 return $this->redirectToRoute('persona_listar');
             } catch (\Exception $e) {
-                $this->addFlash('error', 'No se han podido guardar los cambios');
+                flash()->addError('Ha ocurrido un error. Contacte el Administrador.');
             }
         }
         return $this->render('persona/modificar.html.twig', [
@@ -80,10 +82,12 @@ class PersonaController extends AbstractController
             try {
                 $personaRepository->eliminar($persona);
                 $personaRepository->guardar();
-                $this->addFlash('exito', 'Persona eliminada con éxito');
+
+                flash()->addSuccess('Cambios guardados con éxito.');
+
                 return $this->redirectToRoute('persona_listar');
             } catch (\Exception $e) {
-                $this->addFlash('error', '¡Ocurrió un error al eliminar!');
+                flash()->addError('Ha ocurrido un error. Contacte el Administrador.');
             }
         }
         return $this->render('persona/eliminar.html.twig', [
@@ -112,11 +116,12 @@ class PersonaController extends AbstractController
                 );
 
                 $repository->guardar();
-                $this->addFlash('exito', 'Cambios guardados con éxito');
+
+                flash()->addSuccess('Cambios guardados con éxito.');
 
                 return $this->redirectToRoute('persona_listar');
             } catch (\Exception $e) {
-                $this->addFlash('error', 'No se han podido guardar los cambios');
+                flash()->addError('Ha ocurrido un error. Contacte el Administrador.');
             }
         }
         return $this->render('persona/cambiarClave.html.twig', [

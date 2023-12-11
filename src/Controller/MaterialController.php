@@ -56,12 +56,13 @@ class MaterialController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             try {
                 $material->setDisponible($material->isDisponible());
-
                 $materialRepository->guardar();
-                $this->addFlash('exito', 'Cambios guardados con exito');
+
+                flash()->addSuccess('Cambios guardados con éxito.');
+
                 return $this->redirectToRoute('material_listar');
             } catch (\Exception $e) {
-                $this->addFlash('error', 'No se han podido guardar los cambios');
+                flash()->addError('Ha ocurrido un error. Contacte el Administrador.');
             }
         }
         return $this->render('material/modificar.html.twig', [
@@ -79,10 +80,12 @@ class MaterialController extends AbstractController
             try {
                 $materialRepository->eliminar($material);
                 $materialRepository->guardar();
-                $this->addFlash('exito', 'Material eliminado con éxito');
+
+                flash()->addSuccess('Cambios guardados con éxito.');
+
                 return $this->redirectToRoute('material_listar');
             } catch (\Exception $e) {
-                $this->addFlash('error', '¡Ocurrió un error al eliminar!');
+                flash()->addError('Ha ocurrido un error. Contacte el Administrador.');
             }
         }
         return $this->render('material/eliminar.html.twig', [

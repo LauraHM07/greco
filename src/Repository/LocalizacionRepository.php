@@ -53,4 +53,13 @@ class LocalizacionRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findAllLocalizacionesMenosMueble()
+    {
+        return $this->createQueryBuilder('l')
+            ->orderBy('l.nombre', 'ASC')
+            ->where('l.subLocalizaciones IS NOT EMPTY')
+            ->getQuery()
+            ->getResult();
+    }
 }

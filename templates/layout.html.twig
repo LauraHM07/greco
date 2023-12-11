@@ -44,7 +44,7 @@
                                     Perfil
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="{{ path('persona_cambiar_clave', {'id': app.user.id}) }}"><i class="fa-solid fa-pen"></i>Editar contraseña</a></li>
+                                    <li><a class="dropdown-item" href="{{ path('persona_cambiar_clave', {'id': app.user.id}) }}"><i class="fa-solid fa-pen"></i>Cambiar contraseña</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="{{ path('salir') }}"><i class="fa-solid fa-power-off"></i>Salir</a></li>
                                 </ul>
@@ -57,11 +57,6 @@
     {% endif %}
 
     <div class="container">
-        {% for mensaje in app.flashes('error') %}
-            <div class="alert alert-danger">
-                {{ mensaje }}
-            </div>
-        {% endfor %}
         {% block content %}{% endblock %}
     </div>
 {% endblock %}

@@ -7,7 +7,6 @@ use App\Repository\LocalizacionRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -25,9 +24,14 @@ class LocalizacionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('codigo', null, [
+                'label' => 'Código',
+                'disabled' => true,
+                'required' => true,
+            ])
             ->add('nombre', null, [
                 'label' => 'Nombre',
-                'required' => true,
+                'required' => false,
                 ])
             ->add('descripcion', null, [
                 'label' => 'Descripción',
@@ -50,24 +54,11 @@ class LocalizacionType extends AbstractType
                     'data' => $isChecked,
                 ]);
 
-                // HIJAS CHECKBOX
-
-                $subLocalizaciones = $data->getSubLocalizaciones();
-                foreach ($subLocalizaciones as $subLocalizacion) {
-                    $form->add('subLocalizacion_' . $subLocalizacion->getId(), CheckboxType::class, [
-                        'label' => $subLocalizacion->getNombre(),
-                        'required' => false,
-                        'mapped' => false,
-                        'data' => true,
-                    ]);
-                }
-
                 // LOCALIZACION PADRE SELECT
 
+                $localizaciones = $this->localizacionRepository->findAllLocalizacionesMenosMueble();
                 $pisos = $this->localizacionRepository->findLocalizacionesSinPadre();
                 $salas = $this->localizacionRepository->findLocalizacionesConPadreEHijos();
-
-                dump($salas);
 
                 if($tieneLocalizacionPadre) {
                     if($tieneSubLocalizaciones) {
@@ -87,7 +78,16 @@ class LocalizacionType extends AbstractType
                             'required' => false,
                         ]);
                     }
+                } else {
+                    $form->add('localizacionPadre', EntityType::class, [
+                        'class' => Localizacion::class,
+                        'choices' => $localizaciones,
+                        'choice_label' => 'nombre',
+                        'label' => 'Localización Padre',
+                        'required' => false
+                    ]);
                 }
+
             });
     }
     public function configureOptions(OptionsResolver $resolver)

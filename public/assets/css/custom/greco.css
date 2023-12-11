@@ -39,6 +39,11 @@ a {
         font-size: 15px;
         margin-right: 0.5em;
     }
+
+    .dropdown-item:focus {
+        color: black !important;
+        background-color: lightgray !important;
+    }
 }
 
 .navbar-brand{
@@ -178,4 +183,14 @@ form .btn i {
 .alert i {
     font-size: 15px !important;
     margin-right: 0.5em !important;
+}
+
+.subLocalizaciones {
+    display: flex;
+    flex-direction: row;
+
+    .lista {
+        margin-left: 3.5em;
+        flex-direction: column;
+    }
 }

@@ -11,7 +11,7 @@
         <i class="fa-solid fa-triangle-exclamation"></i> ¿Está segur@ de que deseas eliminar la localización?
     </div>
 
-    {% if localizacion.localizacionPadre is null %}
+    {% if localizacion.subLocalizaciones is not empty %}
         <div class="alert alert-primary">
             <i class="fa-solid fa-circle-info"></i> Se borrarán sus localizaciones hijas.
         </div>

@@ -56,21 +56,25 @@ class LocalizacionController extends AbstractController
      */
     public function modificar(Request $request, Localizacion $localizacion, LocalizacionRepository $localizacionRepository, $error = null) : Response {
         $form = $this->createForm(LocalizacionType::class, $localizacion);
+        $subLocalizaciones = $localizacion->getSubLocalizaciones();
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $localizacionRepository->guardar();
-                $this->addFlash('exito', 'Cambios guardados con éxito');
+
+                flash()->addSuccess('Cambios guardados con éxito.');
+
                 return $this->redirectToRoute('localizacion_listar');
             } catch (\Exception $e) {
-                $error = 'No se han podido guardar los cambios: ' . $e->getMessage();
+                flash()->addError('Ha ocurrido un error. Contacte el Administrador.');
             }
         }
 
         return $this->render('localizacion/modificar.html.twig', [
             'localizacion' => $localizacion,
+            'subLocalizaciones' => $subLocalizaciones,
             'form' => $form->createView(),
             'error' => $error,
         ]);
@@ -85,10 +89,12 @@ class LocalizacionController extends AbstractController
             try {
                 $localizacionRepository->eliminar($localizacion);
                 $localizacionRepository->guardar();
-                $this->addFlash('exito', 'Localización eliminada con éxito');
+
+                flash()->addSuccess('Localización eliminada con éxito.');
+
                 return $this->redirectToRoute('localizacion_listar');
             } catch (\Exception $e) {
-                $this->addFlash('error', '¡Ocurrió un error al eliminar!');
+                flash()->addError('Ha ocurrido un error. Contacte el Administrador.');
             }
         }
         return $this->render('localizacion/eliminar.html.twig', [
