@@ -12,9 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Security("is_granted('ROLE_USUARIO') and is_granted('ROLE_GESTOR')")
- */
 class HistorialController extends AbstractController
 {
     /**
@@ -36,6 +33,7 @@ class HistorialController extends AbstractController
 
     /**
      * @Route("/historial/nuevo", name="historial_nuevo")
+     * @Security("is_granted('ROLE_GESTOR')")
      */
     public function nuevo(Request $request, HistorialRepository $historialRepository) : Response {
         $historial = $historialRepository->nuevo();
@@ -45,6 +43,7 @@ class HistorialController extends AbstractController
 
     /**
      * @Route("/historial/{id}", name="historial_modificar")
+     * @Security("is_granted('ROLE_GESTOR')")
      */
     public function modificar(Request $request, Historial $historial, HistorialRepository $historialRepository) : Response {
         $form = $this->createForm(HistorialType::class, $historial);
@@ -68,6 +67,7 @@ class HistorialController extends AbstractController
 
     /**
      * @Route("/historial/eliminar/{id}", name="historial_eliminar")
+     * @Security("is_granted('ROLE_GESTOR')")
      */
     public function eliminar(HistorialRepository $historialRepository, Request $request, Historial $historial) : Response {
         if ($request->get('confirmar')) {

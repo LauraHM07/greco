@@ -13,12 +13,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Security("is_granted('ROLE_USUARIO')")
+ * @Security("is_granted('ROLE_ADMIN')")
  */
 class LocalizacionController extends AbstractController
 {
     /**
      * @Route("/localizacion", name="localizacion_listar")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function listarLocalizacion(LocalizacionRepository $localizacionRepository, Request $request, PaginatorInterface $paginator) : Response {
         $localizaciones = $localizacionRepository->findAll();

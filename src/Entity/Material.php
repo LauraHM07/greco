@@ -186,8 +186,6 @@ class Material
             }
         }
 
-        // Si llega aquí
-
         return true;
     }
 

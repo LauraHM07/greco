@@ -4,17 +4,19 @@
 
 {% block content %}
     <div class="row" style="display: flex; justify-content: center; margin-top: 5em;">
-        <div class="col-4">
-            <a href="{{ path('localizacion_listar') }}">
-                <div class="card text-center cardEntidad mb-3">
-                    <img src="{{ asset('images/fondo_card.png') }}" class="card-img" alt="fondo carta">
-                    <div class="card-img-overlay" style="display: flex; align-items: center; flex-direction: column; justify-content: center; gap: 0.5em;">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <h5 class="card-title">Localizaciones</h5>
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="col-4">
+                <a href="{{ path('localizacion_listar') }}">
+                    <div class="card text-center cardEntidad mb-3">
+                        <img src="{{ asset('images/fondo_card.png') }}" class="card-img" alt="fondo carta">
+                        <div class="card-img-overlay" style="display: flex; align-items: center; flex-direction: column; justify-content: center; gap: 0.5em;">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <h5 class="card-title">Localizaciones</h5>
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
+                </a>
+            </div>
+        {% endif %}
 
         <div class="col-4">
             <a href="{{ path('material_listar') }}">
@@ -29,21 +31,20 @@
         </div>
     </div>
 
-    {% if is_granted('ROLE_GESTOR') %}
-        <div class="row" style="display: flex; justify-content: center; margin-top: 0.5em;">
-            <div class="col-4">
-                <a href="{{ path('historial_listar') }}">
-                    <div class="card text-center cardEntidad mb-3">
-                        <img src="{{ asset('images/fondo_card.png') }}" class="card-img" alt="fondo carta">
-                        <div class="card-img-overlay" style="display: flex; align-items: center; flex-direction: column; justify-content: center; gap: 0.5em;">
-                            <i class="fa-solid fa-clock-rotate-left"></i>
-                            <h5 class="card-title">Préstamos</h5>
-                        </div>
+    <div class="row" style="display: flex; justify-content: center; margin-top: 0.5em;">
+        <div class="col-4">
+            <a href="{{ path('historial_listar') }}">
+                <div class="card text-center cardEntidad mb-3">
+                    <img src="{{ asset('images/fondo_card.png') }}" class="card-img" alt="fondo carta">
+                    <div class="card-img-overlay" style="display: flex; align-items: center; flex-direction: column; justify-content: center; gap: 0.5em;">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <h5 class="card-title">Préstamos</h5>
                     </div>
-                </a>
-            </div>
-    {% endif %}
-    {% if is_granted('ROLE_ADMIN') %}
+                </div>
+            </a>
+        </div>
+
+        {% if is_granted('ROLE_ADMIN') %}
             <div class="col-4">
                 <a href="{{ path('persona_listar') }}">
                     <div class="card text-center cardEntidad mb-3">
@@ -55,6 +56,6 @@
                     </div>
                 </a>
             </div>
-        </div>
-    {% endif %}
+        {% endif %}
+    </div>
 {% endblock %}

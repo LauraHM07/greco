@@ -8,7 +8,7 @@
 
         <small class="leyendaD">No disponible</small>
 
-        {% if is_granted('ROLE_ADMIN') %}
+        {% if is_granted('ROLE_GESTOR') %}
             <a href="{{ path('material_nuevo') }}" class="btn btn-info">
                 <i class="fa-solid fa-plus"></i> Nuevo material
             </a>
@@ -23,7 +23,7 @@
                 <th>Descripción</th>
                 <th>Último Préstamo</th>
                 <th>Última Devolución</th>
-                {% if is_granted('ROLE_ADMIN') %}
+                {% if is_granted('ROLE_GESTOR') %}
                     <th></th>
                 {% endif %}
             </tr>
@@ -36,7 +36,7 @@
                     <td>{{ material.descripcion is null ? '' : material.descripcion }}</td>
                     <td>{{ material.fechaHoraUltimoPrestamo ? material.fechaHoraUltimoPrestamo|date('Y/m/d') : '' }}</td>
                     <td>{{ material.fechaHoraUltimaDevolucion ? material.fechaHoraUltimaDevolucion|date('Y/m/d') : '' }}</td>
-                    {% if is_granted('ROLE_ADMIN') %}
+                    {% if is_granted('ROLE_GESTOR') %}
                         <td>
                             <a href="{{ path('material_modificar', {'id': material.id}) }}" class="btn btn-secondary">
                                 <i class="fa-solid fa-pen"></i>
