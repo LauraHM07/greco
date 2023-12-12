@@ -57,14 +57,6 @@ class LocalizacionType extends AbstractType
                 } else {
                     $tieneLocalizacionPadre = $data->getLocalizacionPadre() !== null;
                     $tieneSubLocalizaciones = !$data->getSubLocalizaciones()->isEmpty();
-                    $isChecked = $tieneSubLocalizaciones && $data->getId() !== null;
-
-                    $form->add('localizacionPadre', CheckboxType::class, [
-                        'label' => '¿Es Localización Padre?',
-                        'required' => false,
-                        'mapped' => false,
-                        'data' => $isChecked,
-                    ]);
 
                     // Si tiene padre ===> No es pisos (más alto jerarquía)
                     if ($tieneLocalizacionPadre) {

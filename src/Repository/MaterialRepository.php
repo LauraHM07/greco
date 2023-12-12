@@ -28,4 +28,13 @@ class MaterialRepository extends ServiceEntityRepository
 
         return $material;
     }
+
+    public function findAllMaterialesPadre()
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('m.nombre', 'ASC')
+            ->where('m.subMateriales IS NOT EMPTY')
+            ->getQuery()
+            ->getResult();
+    }
 }

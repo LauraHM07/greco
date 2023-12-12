@@ -44,11 +44,10 @@
                         <a href="{{ path('persona_modificar', {'id': persona.id}) }}" class="btn btn-secondary">
                             <i class="fa-solid fa-pen"></i>
                         </a>
-                       {% if app.user.id != persona.id %}
-                            <a href="{{ path('persona_eliminar', {'id': persona.id}) }}" class="btn btn-danger">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </a>
-                       {% endif %}
+
+                        <a href="{{ path('persona_eliminar', {'id': persona.id}) }}" class="btn btn-danger">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </a>
                     </td>
                 </tr>
             {% else %}
