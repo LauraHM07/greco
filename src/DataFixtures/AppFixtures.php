@@ -79,25 +79,25 @@ class AppFixtures extends Fixture
 
         // --------- MUEBLES/ARMARIOS...
 
-        LocalizacionFactory::createOne([
+        $estanteriaB = LocalizacionFactory::createOne([
             'codigo' => 'GTE990',
             'nombre' => 'Estantería B',
             'descripcion' => null,
             'localizacionPadre' => $sala11
         ]);
-        LocalizacionFactory::createOne([
+        $gabineteSecundario = LocalizacionFactory::createOne([
             'codigo' => 'SBS284',
             'nombre' => 'Gabinete Secundario',
             'descripcion' => null,
             'localizacionPadre' => $sala21
         ]);
-        LocalizacionFactory::createOne([
+        $armarioRojo = LocalizacionFactory::createOne([
             'codigo' => 'UBQ480',
             'nombre' => 'Armario Rojo',
             'descripcion' => null,
             'localizacionPadre' => $sala12
         ]);
-        LocalizacionFactory::createOne([
+        $armarioAzul = LocalizacionFactory::createOne([
             'codigo' => 'LSP994',
             'nombre' => 'Armario Azul',
             'descripcion' => null,
@@ -114,8 +114,40 @@ class AppFixtures extends Fixture
             'disponible' => true,
             'fechaAlta' => null,
             'fechaBaja' => null,
-            'localizacion' => LocalizacionFactory::random(),
+            'localizacion' => $estanteriaB,
             'materialPadre' => null,
+            'persona' => null,
+            'responsable' => PersonaFactory::random(),
+            'prestadoPor' => null,
+            'historicos' => null
+        ]);
+
+        MaterialFactory::createOne([
+            'nombre' => 'Tizas',
+            'descripcion' => 'Caja con 10 tizas',
+            'fechaHoraUltimoPrestamo' => null,
+            'fechaHoraUltimaDevolucion' => null,
+            'disponible' => true,
+            'fechaAlta' => null,
+            'fechaBaja' => null,
+            'localizacion' => $estanteriaB,
+            'materialPadre' => $cajaPizarras,
+            'persona' => null,
+            'responsable' => PersonaFactory::random(),
+            'prestadoPor' => null,
+            'historicos' => null
+        ]);
+
+        MaterialFactory::createOne([
+            'nombre' => 'Borradores Pizarra',
+            'descripcion' => 'Borrador pizarra',
+            'fechaHoraUltimoPrestamo' => null,
+            'fechaHoraUltimaDevolucion' => null,
+            'disponible' => true,
+            'fechaAlta' => null,
+            'fechaBaja' => null,
+            'localizacion' => $estanteriaB,
+            'materialPadre' => $cajaPizarras,
             'persona' => null,
             'responsable' => PersonaFactory::random(),
             'prestadoPor' => null,
@@ -130,7 +162,7 @@ class AppFixtures extends Fixture
             'disponible' => true,
             'fechaAlta' => null,
             'fechaBaja' => null,
-            'localizacion' => LocalizacionFactory::random(),
+            'localizacion' => $armarioRojo,
             'materialPadre' => null,
             'persona' => null,
             'responsable' => PersonaFactory::random(),
@@ -138,39 +170,7 @@ class AppFixtures extends Fixture
             'historicos' => null
         ]);
 
-        $tizas = MaterialFactory::createOne([
-            'nombre' => 'Tizas',
-            'descripcion' => 'Caja con 10 tizas',
-            'fechaHoraUltimoPrestamo' => null,
-            'fechaHoraUltimaDevolucion' => null,
-            'disponible' => true,
-            'fechaAlta' => null,
-            'fechaBaja' => null,
-            'localizacion' => LocalizacionFactory::random(),
-            'materialPadre' => $cajaPizarras,
-            'persona' => null,
-            'responsable' => PersonaFactory::random(),
-            'prestadoPor' => null,
-            'historicos' => null
-        ]);
-
-        $borradorPizarra = MaterialFactory::createOne([
-            'nombre' => 'Borradores Pizarra',
-            'descripcion' => 'Borrador pizarra',
-            'fechaHoraUltimoPrestamo' => null,
-            'fechaHoraUltimaDevolucion' => null,
-            'disponible' => true,
-            'fechaAlta' => null,
-            'fechaBaja' => null,
-            'localizacion' => LocalizacionFactory::random(),
-            'materialPadre' => $cajaPizarras,
-            'persona' => null,
-            'responsable' => PersonaFactory::random(),
-            'prestadoPor' => null,
-            'historicos' => null
-        ]);
-
-        $cableHDMI = MaterialFactory::createOne([
+        MaterialFactory::createOne([
             'nombre' => 'Cable HDMI',
             'descripcion' => '1.5 metros',
             'fechaHoraUltimoPrestamo' => null,
@@ -178,7 +178,7 @@ class AppFixtures extends Fixture
             'disponible' => true,
             'fechaAlta' => null,
             'fechaBaja' => null,
-            'localizacion' => LocalizacionFactory::random(),
+            'localizacion' => $armarioRojo,
             'materialPadre' => $cajaCables,
             'persona' => null,
             'responsable' => PersonaFactory::random(),
@@ -186,7 +186,7 @@ class AppFixtures extends Fixture
             'historicos' => null
         ]);
 
-        $cableRed = MaterialFactory::createOne([
+        MaterialFactory::createOne([
             'nombre' => 'Cable Red',
             'descripcion' => '3 metros',
             'fechaHoraUltimoPrestamo' => null,
@@ -194,7 +194,7 @@ class AppFixtures extends Fixture
             'disponible' => true,
             'fechaAlta' => null,
             'fechaBaja' => null,
-            'localizacion' => LocalizacionFactory::random(),
+            'localizacion' => $armarioRojo,
             'materialPadre' => $cajaCables,
             'persona' => null,
             'responsable' => PersonaFactory::random(),
@@ -202,7 +202,7 @@ class AppFixtures extends Fixture
             'historicos' => null
         ]);
 
-        $cableUSB = MaterialFactory::createOne([
+        MaterialFactory::createOne([
             'nombre' => 'Cable USB',
             'descripcion' => '100 centímetros',
             'fechaHoraUltimoPrestamo' => null,
@@ -210,7 +210,7 @@ class AppFixtures extends Fixture
             'disponible' => true,
             'fechaAlta' => null,
             'fechaBaja' => null,
-            'localizacion' => LocalizacionFactory::random(),
+            'localizacion' => $armarioRojo,
             'materialPadre' => $cajaCables,
             'persona' => null,
             'responsable' => PersonaFactory::random(),
@@ -218,7 +218,7 @@ class AppFixtures extends Fixture
             'historicos' => null
         ]);
 
-        $cableVGA = MaterialFactory::createOne([
+        MaterialFactory::createOne([
             'nombre' => 'Cable VGA',
             'descripcion' => '1 metro',
             'fechaHoraUltimoPrestamo' => null,
@@ -226,7 +226,7 @@ class AppFixtures extends Fixture
             'disponible' => true,
             'fechaAlta' => null,
             'fechaBaja' => null,
-            'localizacion' => LocalizacionFactory::random(),
+            'localizacion' => $armarioRojo,
             'materialPadre' => $cajaCables,
             'persona' => null,
             'responsable' => PersonaFactory::random(),
@@ -234,7 +234,7 @@ class AppFixtures extends Fixture
             'historicos' => null
         ]);
 
-        $cableDVI = MaterialFactory::createOne([
+        MaterialFactory::createOne([
             'nombre' => 'Cable DVI',
             'descripcion' => '1 metro',
             'fechaHoraUltimoPrestamo' => null,
@@ -242,8 +242,136 @@ class AppFixtures extends Fixture
             'disponible' => true,
             'fechaAlta' => null,
             'fechaBaja' => null,
-            'localizacion' => LocalizacionFactory::random(),
+            'localizacion' => $armarioRojo,
             'materialPadre' => $cajaCables,
+            'persona' => null,
+            'responsable' => PersonaFactory::random(),
+            'prestadoPor' => null,
+            'historicos' => null
+        ]);
+
+        $kitLatiguillos = MaterialFactory::createOne([
+            'nombre' => 'Kit construcción latiguillos',
+            'descripcion' => null,
+            'fechaHoraUltimoPrestamo' => null,
+            'fechaHoraUltimaDevolucion' => null,
+            'disponible' => true,
+            'fechaAlta' => null,
+            'fechaBaja' => null,
+            'localizacion' => $gabineteSecundario,
+            'materialPadre' => null,
+            'persona' => null,
+            'responsable' => PersonaFactory::random(),
+            'prestadoPor' => null,
+            'historicos' => null
+        ]);
+
+        MaterialFactory::createOne([
+            'nombre' => 'Crimpadora',
+            'descripcion' => 'Rj45',
+            'fechaHoraUltimoPrestamo' => null,
+            'fechaHoraUltimaDevolucion' => null,
+            'disponible' => true,
+            'fechaAlta' => null,
+            'fechaBaja' => null,
+            'localizacion' => $gabineteSecundario,
+            'materialPadre' => $kitLatiguillos,
+            'persona' => null,
+            'responsable' => PersonaFactory::random(),
+            'prestadoPor' => null,
+            'historicos' => null
+        ]);
+
+        MaterialFactory::createOne([
+            'nombre' => 'Tijeras',
+            'descripcion' => 'De mano',
+            'fechaHoraUltimoPrestamo' => null,
+            'fechaHoraUltimaDevolucion' => null,
+            'disponible' => true,
+            'fechaAlta' => null,
+            'fechaBaja' => null,
+            'localizacion' => $gabineteSecundario,
+            'materialPadre' => $kitLatiguillos,
+            'persona' => null,
+            'responsable' => PersonaFactory::random(),
+            'prestadoPor' => null,
+            'historicos' => null
+        ]);
+
+        MaterialFactory::createOne([
+            'nombre' => 'Conectores 8P8C',
+            'descripcion' => 'Bolsa',
+            'fechaHoraUltimoPrestamo' => null,
+            'fechaHoraUltimaDevolucion' => null,
+            'disponible' => true,
+            'fechaAlta' => null,
+            'fechaBaja' => null,
+            'localizacion' => $gabineteSecundario,
+            'materialPadre' => $kitLatiguillos,
+            'persona' => null,
+            'responsable' => PersonaFactory::random(),
+            'prestadoPor' => null,
+            'historicos' => null
+        ]);
+
+        $kitLimpieza = MaterialFactory::createOne([
+            'nombre' => 'Kit limpieza aula',
+            'descripcion' => null,
+            'fechaHoraUltimoPrestamo' => null,
+            'fechaHoraUltimaDevolucion' => null,
+            'disponible' => true,
+            'fechaAlta' => null,
+            'fechaBaja' => null,
+            'localizacion' => $armarioAzul,
+            'materialPadre' => null,
+            'persona' => null,
+            'responsable' => PersonaFactory::random(),
+            'prestadoPor' => null,
+            'historicos' => null
+        ]);
+
+        MaterialFactory::createOne([
+            'nombre' => 'Papel',
+            'descripcion' => '',
+            'fechaHoraUltimoPrestamo' => null,
+            'fechaHoraUltimaDevolucion' => null,
+            'disponible' => true,
+            'fechaAlta' => null,
+            'fechaBaja' => null,
+            'localizacion' => $armarioAzul,
+            'materialPadre' => $kitLimpieza,
+            'persona' => null,
+            'responsable' => PersonaFactory::random(),
+            'prestadoPor' => null,
+            'historicos' => null
+        ]);
+
+        MaterialFactory::createOne([
+            'nombre' => 'Gel hidroalcohólico',
+            'descripcion' => '',
+            'fechaHoraUltimoPrestamo' => null,
+            'fechaHoraUltimaDevolucion' => null,
+            'disponible' => true,
+            'fechaAlta' => null,
+            'fechaBaja' => null,
+            'localizacion' => $armarioAzul,
+            'materialPadre' => $kitLimpieza,
+            'persona' => null,
+            'responsable' => PersonaFactory::random(),
+            'prestadoPor' => null,
+            'historicos' => null
+        ]);
+
+        MaterialFactory::createOne([
+            'nombre' => 'Limpiacristales',
+            'descripcion' => '',
+            'fechaHoraUltimoPrestamo' => null,
+            'fechaHoraUltimaDevolucion' => null,
+            'disponible' => true,
+            'fechaAlta' => null,
+            'fechaBaja' => null,
+            'localizacion' => $armarioAzul,
+            'materialPadre' => $kitLimpieza,
             'persona' => null,
             'responsable' => PersonaFactory::random(),
             'prestadoPor' => null,

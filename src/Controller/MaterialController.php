@@ -38,6 +38,7 @@ class MaterialController extends AbstractController
      */
     public function nuevo(Request $request, MaterialRepository $materialRepository) : Response {
         $material = $materialRepository->nuevo();
+        $material->setDisponible(1);
 
         return $this->modificar($request, $material, $materialRepository);
     }
