@@ -50,7 +50,8 @@ class MaterialType extends AbstractType
                         'choices' => $materiales,
                         'choice_label' => 'nombre',
                         'label' => 'Material Padre',
-                        'required' => false,
+                        'required' => true,
+                        'placeholder' => false,
                     ]);
 
                     $form->add('localizacion', EntityType::class, [
@@ -59,6 +60,7 @@ class MaterialType extends AbstractType
                         'choice_label' => 'nombreCompleto',
                         'label' => 'Localización',
                         'required' => false,
+                        'placeholder' => false,
                     ]);
                 } else {
                     $tieneSubMateriales = !$data->getSubMateriales()->isEmpty();

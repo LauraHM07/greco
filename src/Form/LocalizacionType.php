@@ -45,6 +45,8 @@ class LocalizacionType extends AbstractType
                 $pisos = $this->localizacionRepository->findLocalizacionesSinPadre();
                 $salas = $this->localizacionRepository->findLocalizacionesConPadreEHijos();
 
+                dump($localizaciones);
+
                 // Si no existen datos, significa que el form está vacío ===> Crear nueva localización
                 if (!$data || null === $data->getId()) {
                     $form->add('localizacionPadre', EntityType::class, [
@@ -52,7 +54,8 @@ class LocalizacionType extends AbstractType
                         'choices' => $localizaciones,
                         'choice_label' => 'nombreCompleto',
                         'label' => 'Localización Padre',
-                        'required' => false,
+                        'required' => true,
+                        'placeholder' => false,
                     ]);
                 } else {
                     $tieneLocalizacionPadre = $data->getLocalizacionPadre() !== null;
@@ -67,7 +70,8 @@ class LocalizacionType extends AbstractType
                                 'choices' => $pisos,
                                 'choice_label' => 'nombre',
                                 'label' => 'Localización Padre',
-                                'required' => false,
+                                'required' => true,
+                                'placeholder' => false,
                             ]);
                         } else {
                             $form->add('localizacionPadre', EntityType::class, [
@@ -75,7 +79,8 @@ class LocalizacionType extends AbstractType
                                 'choices' => $salas,
                                 'choice_label' => 'nombreCompleto',
                                 'label' => 'Localización Padre',
-                                'required' => false,
+                                'required' => true,
+                                'placeholder' => false,
                             ]);
                         }
                     }
