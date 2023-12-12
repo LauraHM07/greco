@@ -14,6 +14,18 @@
     {{ form_start(form) }}
     {{ form_widget(form) }}
 
+    {% if subMateriales is not empty %}
+        <div class="jerarquia">
+            <label>Materiales hijos</label>
+
+            <ul class="lista">
+                {% for subMaterial in subMateriales %}
+                    <li>{{ subMaterial.nombre }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
     <a href="{{ path('material_listar') }}" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i>Volver</a>
     <button type="submit" class="btn btn-success"><i class="fa fa-check"></i>Guardar</button>
 

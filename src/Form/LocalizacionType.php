@@ -41,53 +41,53 @@ class LocalizacionType extends AbstractType
                 $form = $event->getForm();
                 $data = $event->getData();
 
-                // PADRE CHECKED
-
-                $tieneLocalizacionPadre = $data->getLocalizacionPadre() !== null;
-                $tieneSubLocalizaciones = !$data->getSubLocalizaciones()->isEmpty();
-                $isChecked = $tieneSubLocalizaciones && $data->getId() !== null;
-
-                $form->add('localizacionPadre', CheckboxType::class, [
-                    'label' => '¿Es Localización Padre?',
-                    'required' => false,
-                    'mapped' => false,
-                    'data' => $isChecked,
-                ]);
-
-                // LOCALIZACION PADRE SELECT
-
                 $localizaciones = $this->localizacionRepository->findAllLocalizacionesMenosMueble();
                 $pisos = $this->localizacionRepository->findLocalizacionesSinPadre();
                 $salas = $this->localizacionRepository->findLocalizacionesConPadreEHijos();
 
-                if($tieneLocalizacionPadre) {
-                    if($tieneSubLocalizaciones) {
-                        $form->add('localizacionPadre', EntityType::class, [
-                            'class' => Localizacion::class,
-                            'choices' => $pisos,
-                            'choice_label' => 'nombre',
-                            'label' => 'Localización Padre',
-                            'required' => false,
-                        ]);
-                    } else {
-                        $form->add('localizacionPadre', EntityType::class, [
-                            'class' => Localizacion::class,
-                            'choices' => $salas,
-                            'choice_label' => 'nombreCompleto',
-                            'label' => 'Localización Padre',
-                            'required' => false,
-                        ]);
-                    }
-                } else {
+                // Si no existen datos, significa que el form está vacío ===> Crear nueva localización
+                if (!$data || null === $data->getId()) {
                     $form->add('localizacionPadre', EntityType::class, [
                         'class' => Localizacion::class,
                         'choices' => $localizaciones,
-                        'choice_label' => 'nombre',
+                        'choice_label' => 'nombreCompleto',
                         'label' => 'Localización Padre',
-                        'required' => false
+                        'required' => false,
                     ]);
-                }
+                } else {
+                    $tieneLocalizacionPadre = $data->getLocalizacionPadre() !== null;
+                    $tieneSubLocalizaciones = !$data->getSubLocalizaciones()->isEmpty();
+                    $isChecked = $tieneSubLocalizaciones && $data->getId() !== null;
 
+                    $form->add('localizacionPadre', CheckboxType::class, [
+                        'label' => '¿Es Localización Padre?',
+                        'required' => false,
+                        'mapped' => false,
+                        'data' => $isChecked,
+                    ]);
+
+                    // Si tiene padre ===> No es pisos (más alto jerarquía)
+                    if ($tieneLocalizacionPadre) {
+                        // Si tiene hijas ===> No es armario/mueble (más bajo jerarquía)
+                        if($tieneSubLocalizaciones) {
+                            $form->add('localizacionPadre', EntityType::class, [
+                                'class' => Localizacion::class,
+                                'choices' => $pisos,
+                                'choice_label' => 'nombre',
+                                'label' => 'Localización Padre',
+                                'required' => false,
+                            ]);
+                        } else {
+                            $form->add('localizacionPadre', EntityType::class, [
+                                'class' => Localizacion::class,
+                                'choices' => $salas,
+                                'choice_label' => 'nombreCompleto',
+                                'label' => 'Localización Padre',
+                                'required' => false,
+                            ]);
+                        }
+                    }
+                }
             });
     }
     public function configureOptions(OptionsResolver $resolver)

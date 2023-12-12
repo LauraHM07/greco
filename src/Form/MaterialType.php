@@ -42,18 +42,6 @@ class MaterialType extends AbstractType
                     'mapped' => false,
                     'data' => $isChecked,
                 ]);
-
-                // HIJOS CHECKBOX
-
-                $subMateriales = $data->getSubMateriales();
-                foreach ($subMateriales as $subMaterial) {
-                    $form->add('subMaterial_' . $subMaterial->getId(), CheckboxType::class, [
-                        'label' => $subMaterial->getNombre(),
-                        'required' => false,
-                        'mapped' => false,
-                        'data' => true,
-                    ]);
-                }
             });
     }
     public function configureOptions(OptionsResolver $resolver)

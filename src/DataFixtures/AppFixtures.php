@@ -12,6 +12,29 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+        // --------- ADMIN Y GESTOR
+
+        PersonaFactory::createOne([
+            'nombre_usuario' => 'ADMIN',
+            'clave' => 'CLAVEADMIN',
+            'nombre' => 'ADMIN',
+            'apellidos' => 'ADMIN',
+            'administrador' => 1,
+            'gestor_prestamos' => 1
+        ]);
+        PersonaFactory::createOne([
+            'nombre_usuario' => 'GESTOR',
+            'clave' => 'CLAVEGESTOR',
+            'nombre' => 'GESTOR',
+            'apellidos' => 'GESTOR',
+            'administrador' => 0,
+            'gestor_prestamos' => 1
+        ]);
+
+        // --------- PERSONAS
+
+        PersonaFactory::createMany(8);
+
         // --------- PISOS
 
         $piso1 = LocalizacionFactory::createOne([
@@ -94,7 +117,7 @@ class AppFixtures extends Fixture
             'localizacion' => LocalizacionFactory::random(),
             'materialPadre' => null,
             'persona' => null,
-            'responsable' => null,
+            'responsable' => PersonaFactory::random(),
             'prestadoPor' => null,
             'historicos' => null
         ]);
@@ -110,7 +133,7 @@ class AppFixtures extends Fixture
             'localizacion' => LocalizacionFactory::random(),
             'materialPadre' => null,
             'persona' => null,
-            'responsable' => null,
+            'responsable' => PersonaFactory::random(),
             'prestadoPor' => null,
             'historicos' => null
         ]);
@@ -126,7 +149,7 @@ class AppFixtures extends Fixture
             'localizacion' => LocalizacionFactory::random(),
             'materialPadre' => $cajaPizarras,
             'persona' => null,
-            'responsable' => null,
+            'responsable' => PersonaFactory::random(),
             'prestadoPor' => null,
             'historicos' => null
         ]);
@@ -142,7 +165,7 @@ class AppFixtures extends Fixture
             'localizacion' => LocalizacionFactory::random(),
             'materialPadre' => $cajaPizarras,
             'persona' => null,
-            'responsable' => null,
+            'responsable' => PersonaFactory::random(),
             'prestadoPor' => null,
             'historicos' => null
         ]);
@@ -158,7 +181,7 @@ class AppFixtures extends Fixture
             'localizacion' => LocalizacionFactory::random(),
             'materialPadre' => $cajaCables,
             'persona' => null,
-            'responsable' => null,
+            'responsable' => PersonaFactory::random(),
             'prestadoPor' => null,
             'historicos' => null
         ]);
@@ -174,7 +197,7 @@ class AppFixtures extends Fixture
             'localizacion' => LocalizacionFactory::random(),
             'materialPadre' => $cajaCables,
             'persona' => null,
-            'responsable' => null,
+            'responsable' => PersonaFactory::random(),
             'prestadoPor' => null,
             'historicos' => null
         ]);
@@ -190,7 +213,7 @@ class AppFixtures extends Fixture
             'localizacion' => LocalizacionFactory::random(),
             'materialPadre' => $cajaCables,
             'persona' => null,
-            'responsable' => null,
+            'responsable' => PersonaFactory::random(),
             'prestadoPor' => null,
             'historicos' => null
         ]);
@@ -206,7 +229,7 @@ class AppFixtures extends Fixture
             'localizacion' => LocalizacionFactory::random(),
             'materialPadre' => $cajaCables,
             'persona' => null,
-            'responsable' => null,
+            'responsable' => PersonaFactory::random(),
             'prestadoPor' => null,
             'historicos' => null
         ]);
@@ -222,33 +245,10 @@ class AppFixtures extends Fixture
             'localizacion' => LocalizacionFactory::random(),
             'materialPadre' => $cajaCables,
             'persona' => null,
-            'responsable' => null,
+            'responsable' => PersonaFactory::random(),
             'prestadoPor' => null,
             'historicos' => null
         ]);
-
-        // --------- ADMIN Y GESTOR
-
-        PersonaFactory::createOne([
-            'nombre_usuario' => 'ADMIN',
-            'clave' => 'CLAVEADMIN',
-            'nombre' => 'ADMIN',
-            'apellidos' => 'ADMIN',
-            'administrador' => 1,
-            'gestor_prestamos' => 1
-        ]);
-        PersonaFactory::createOne([
-            'nombre_usuario' => 'GESTOR',
-            'clave' => 'CLAVEGESTOR',
-            'nombre' => 'GESTOR',
-            'apellidos' => 'GESTOR',
-            'administrador' => 0,
-            'gestor_prestamos' => 1
-        ]);
-
-        // --------- PERSONAS
-
-        PersonaFactory::createMany(8);
 
         $manager->flush();
     }

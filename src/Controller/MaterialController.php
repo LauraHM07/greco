@@ -50,8 +50,9 @@ class MaterialController extends AbstractController
      */
     public function modificar(Request $request, Material $material, MaterialRepository $materialRepository) : Response {
         $form = $this->createForm(MaterialType::class, $material);
-        $form->handleRequest($request);
+        $subMateriales = $material->getSubMateriales();
 
+        $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
             try {
@@ -67,6 +68,7 @@ class MaterialController extends AbstractController
         }
         return $this->render('material/modificar.html.twig', [
             'material' => $material,
+            'subMateriales' => $subMateriales,
             'form' => $form->createView()
         ]);
     }
