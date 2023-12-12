@@ -70,7 +70,7 @@ class Material
     private $localizacion;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Material", inversedBy="subMaterial")
+     * @ORM\ManyToOne(targetEntity="Material", inversedBy="subMateriales")
      * @ORM\JoinColumn(name="material_padre_id", referencedColumnName="id", nullable=true)
      * @var Material|null
      */
@@ -192,14 +192,11 @@ class Material
     public function setDisponible(bool $disponible): Material
     {
         if ($this->disponible !== $disponible) {
-
-            if (!$disponible) {
-                foreach ($this->getSubMateriales() as $subMaterial) {
-                    $subMaterial->setDisponible($disponible);
-                }
-            }
-
             $this->disponible = $disponible;
+
+            foreach ($this->getSubMateriales() as $subMaterial) {
+                $subMaterial->setDisponible($disponible);
+            }
         }
 
         return $this;

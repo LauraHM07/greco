@@ -56,8 +56,14 @@ class MaterialController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             try {
                 $material->setDisponible($material->isDisponible());
-                $materialRepository->guardar();
 
+                if ($material->isDisponible()) {
+                    foreach ($subMateriales as $subMaterial) {
+                        $subMaterial->setDisponible(true);
+                    }
+                }
+
+                $materialRepository->guardar();
                 flash()->addSuccess('Cambios guardados con éxito.');
 
                 return $this->redirectToRoute('material_listar');
