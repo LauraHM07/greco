@@ -1,0 +1,24 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}GRECO - Material{% endblock %}
+
+{% block content %}
+    <div class="barraArriba">
+        <h3 class="titulo">Listado de los códigos QR</h3>
+    </div>
+
+    <div class="fotos">
+        {% for material in materiales %}
+            <div class="card foto" style="width: 18rem;">
+                <div class="card-header">
+                    <img class="card-img-top codigoQR" src="{{ qr_code_path('https://127.0.0.1:8000/material/' ~ material.id) }}" alt="Card image cap" loading="lazy">
+                </div>
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ material.nombre }}</h5>
+                    <p>Código: {{ material.codigo }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

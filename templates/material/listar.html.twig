@@ -11,6 +11,9 @@
             <a type="button" class="btn btn-sm btn-outline-secondary" href="{{ path('material_listar') }}">Todos</a>
             <a type="button" class="btn btn-sm btn-outline-secondary" href="{{ path('material_disponible_listar') }}">Disponibles</a>
             <a type="button" class="btn btn-sm btn-outline-secondary" href="{{ path('material_noDisponible_listar') }}">No disponibles</a>
+            {% if is_granted('ROLE_GESTOR') %}
+                <a type="button" class="btn btn-sm btn-outline-secondary" href="{{ path('codigos') }}">Códigos QR</a>
+            {% endif %}
         </div>
     </div>
 
@@ -57,7 +60,7 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="6">No hay ningun material.</td>
+                    <td colspan="7">No hay ningún material.</td>
                 </tr>
             {% endfor %}
         </tbody>

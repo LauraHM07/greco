@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Material;
 use App\Form\MaterialType;
 use App\Repository\MaterialRepository;
+use Endroid\QrCode\Builder\BuilderInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -133,6 +134,26 @@ class MaterialController extends AbstractController
         }
         return $this->render('material/eliminar.html.twig', [
             'material' => $material
+        ]);
+    }
+
+    /**
+     * @Route ("/codigos", name="codigos")
+     */
+    public function codigos(MaterialRepository $materialRepository, BuilderInterface $qrBuilder): Response
+    {
+        $materiales = $materialRepository->findAll();
+
+        $qrResult = $qrBuilder
+            ->size(300)
+            ->margin(20)
+            ->data('https://www.youtube.com/watch?v=_tee_eoVSj8&ab_channel=LatteAndCode')
+            ->build();
+        $base = $qrResult->getDataUri();
+
+        return $this->render('material/listar_codigos.html.twig', [
+            'materiales' => $materiales,
+            'base' => $base
         ]);
     }
 }

@@ -195,6 +195,28 @@ form .btn i {
         flex-direction: column;
     }
 }
+
 .btn-sm i {
     font-size: 13px;
+}
+
+.fotos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+
+    .foto {
+        width: 20% !important;
+
+        .card-header {
+            text-align: center;
+            .codigoQR {
+                width: 150px !important;
+                height: 150px !important;
+            }
+        }
+    }
 }
