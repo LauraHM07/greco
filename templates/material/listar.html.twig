@@ -6,31 +6,39 @@
     <div class="barraArriba">
         <h2 class="titulo">Listado del material</h2>
 
-        <small class="leyendaD">No disponible</small>
-
-        {% if is_granted('ROLE_GESTOR') %}
-            <a href="{{ path('material_nuevo') }}" class="btn btn-info">
-                <i class="fa-solid fa-plus"></i> Nuevo material
-            </a>
-        {% endif %}
+        <div>
+            <label style="margin-right: 0.8em">Filtros:</label>
+            <a type="button" class="btn btn-sm btn-outline-secondary" href="{{ path('material_listar') }}">Todos</a>
+            <a type="button" class="btn btn-sm btn-outline-secondary" href="{{ path('material_disponible_listar') }}">Disponibles</a>
+            <a type="button" class="btn btn-sm btn-outline-secondary" href="{{ path('material_noDisponible_listar') }}">No disponibles</a>
+        </div>
     </div>
 
     <table class="table table-hover align-middle">
+        <caption class="leyendaD">No disponible</caption>
         <thead>
             <tr>
+                <th>Código</th>
                 <th>Nombre</th>
                 <th>Localización</th>
                 <th>Descripción</th>
                 <th>Último Préstamo</th>
                 <th>Última Devolución</th>
                 {% if is_granted('ROLE_GESTOR') %}
-                    <th></th>
+                    <th>
+                        {% if is_granted('ROLE_GESTOR') %}
+                            <a href="{{ path('material_nuevo') }}" class="btn btn-sm btn-info">
+                                <i class="fa-solid fa-plus"></i> Nuevo material
+                            </a>
+                        {% endif %}
+                    </th>
                 {% endif %}
             </tr>
         </thead>
         <tbody class="table-group-divider">
             {% for material in pagination %}
                 <tr {% if not material.disponible %}class="no-disponible"{% endif %}>
+                    <td>{{ material.codigo }}</td>
                     <td>{{ material.nombre }}</td>
                     <td>{{ material.localizacion is null ? '' : material.localizacion.nombre }}</td>
                     <td>{{ material.descripcion is null ? '' : material.descripcion }}</td>

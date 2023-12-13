@@ -37,4 +37,20 @@ class MaterialRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findAllMaterialesDisponibles()
+    {
+        return $this->createQueryBuilder('m')
+            ->where('m.disponible = true')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findAllMaterialesNoDisponibles()
+    {
+        return $this->createQueryBuilder('m')
+            ->where('m.disponible != true')
+            ->getQuery()
+            ->getResult();
+    }
 }

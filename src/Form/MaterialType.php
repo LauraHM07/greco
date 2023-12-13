@@ -28,6 +28,11 @@ class MaterialType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('codigo', null, [
+                'label' => 'Código',
+                'disabled' => true,
+                'required' => true,
+            ])
             ->add('nombre', null, [
                 'label' => 'Nombre',
                 'required' => true,

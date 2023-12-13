@@ -24,6 +24,12 @@ class Material
      * @ORM\Column(type="string")
      * @var string
      */
+    private $codigo;
+
+    /**
+     * @ORM\Column(type="string")
+     * @var string
+     */
     private $nombre;
 
     /**
@@ -113,6 +119,23 @@ class Material
     {
         $this->historicos = new ArrayCollection();
         $this->subMateriales = new ArrayCollection();
+        $this->codigo = $this->generateUniqueCode();
+    }
+
+    // --------- GENERAR CÓDIGO CON REGEX AL CREAR UN MATERIAL
+
+    private function generateUniqueCode(): string
+    {
+        $prefix = $this->generateRandomPrefix();
+        $digits = str_pad(mt_rand(0, 999), 3, '0', STR_PAD_LEFT);
+
+        return $prefix . $digits;
+    }
+
+    private function generateRandomPrefix(): string
+    {
+        $letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        return substr(str_shuffle($letters), 0, 3);
     }
 
     // --------- ID
@@ -120,6 +143,19 @@ class Material
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    // --------- CÓDIGO
+
+    public function getCodigo(): string
+    {
+        return $this->codigo;
+    }
+
+    public function setCodigo(?string $codigo): Material
+    {
+        $this->codigo = $codigo;
+        return $this;
     }
 
     // --------- NOMBRE

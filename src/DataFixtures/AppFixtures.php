@@ -107,6 +107,7 @@ class AppFixtures extends Fixture
         // --------- MATERIALES
 
         $cajaPizarras = MaterialFactory::createOne([
+            'codigo' => 'IME147',
             'nombre' => 'Caja Pizarra',
             'descripcion' => null,
             'fechaHoraUltimoPrestamo' => null,
@@ -123,6 +124,7 @@ class AppFixtures extends Fixture
         ]);
 
         MaterialFactory::createOne([
+            'codigo' => 'OAG285',
             'nombre' => 'Tizas',
             'descripcion' => 'Caja con 10 tizas',
             'fechaHoraUltimoPrestamo' => null,
@@ -139,6 +141,7 @@ class AppFixtures extends Fixture
         ]);
 
         MaterialFactory::createOne([
+            'codigo' => 'IMV508',
             'nombre' => 'Borradores Pizarra',
             'descripcion' => 'Borrador pizarra',
             'fechaHoraUltimoPrestamo' => null,
@@ -155,6 +158,7 @@ class AppFixtures extends Fixture
         ]);
 
         $cajaCables = MaterialFactory::createOne([
+            'codigo' => 'PWJ965',
             'nombre' => 'Caja Cables',
             'descripcion' => null,
             'fechaHoraUltimoPrestamo' => null,
@@ -171,6 +175,7 @@ class AppFixtures extends Fixture
         ]);
 
         MaterialFactory::createOne([
+            'codigo' => 'FKF622',
             'nombre' => 'Cable HDMI',
             'descripcion' => '1.5 metros',
             'fechaHoraUltimoPrestamo' => null,
@@ -187,6 +192,7 @@ class AppFixtures extends Fixture
         ]);
 
         MaterialFactory::createOne([
+            'codigo' => 'MRV671',
             'nombre' => 'Cable Red',
             'descripcion' => '3 metros',
             'fechaHoraUltimoPrestamo' => null,
@@ -203,6 +209,7 @@ class AppFixtures extends Fixture
         ]);
 
         MaterialFactory::createOne([
+            'codigo' => 'FWQ724',
             'nombre' => 'Cable USB',
             'descripcion' => '100 centímetros',
             'fechaHoraUltimoPrestamo' => null,
@@ -219,6 +226,7 @@ class AppFixtures extends Fixture
         ]);
 
         MaterialFactory::createOne([
+            'codigo' => 'TEG005',
             'nombre' => 'Cable VGA',
             'descripcion' => '1 metro',
             'fechaHoraUltimoPrestamo' => null,
@@ -235,6 +243,7 @@ class AppFixtures extends Fixture
         ]);
 
         MaterialFactory::createOne([
+            'codigo' => 'CTN515',
             'nombre' => 'Cable DVI',
             'descripcion' => '1 metro',
             'fechaHoraUltimoPrestamo' => null,
@@ -251,6 +260,7 @@ class AppFixtures extends Fixture
         ]);
 
         $kitLatiguillos = MaterialFactory::createOne([
+            'codigo' => 'ELI619',
             'nombre' => 'Kit construcción latiguillos',
             'descripcion' => null,
             'fechaHoraUltimoPrestamo' => null,
@@ -267,6 +277,7 @@ class AppFixtures extends Fixture
         ]);
 
         MaterialFactory::createOne([
+            'codigo' => 'ZPH859',
             'nombre' => 'Crimpadora',
             'descripcion' => 'Rj45',
             'fechaHoraUltimoPrestamo' => null,
@@ -283,6 +294,7 @@ class AppFixtures extends Fixture
         ]);
 
         MaterialFactory::createOne([
+            'codigo' => 'RTT022',
             'nombre' => 'Tijeras',
             'descripcion' => 'De mano',
             'fechaHoraUltimoPrestamo' => null,
@@ -299,6 +311,7 @@ class AppFixtures extends Fixture
         ]);
 
         MaterialFactory::createOne([
+            'codigo' => 'VGN284',
             'nombre' => 'Conectores 8P8C',
             'descripcion' => 'Bolsa',
             'fechaHoraUltimoPrestamo' => null,
@@ -315,6 +328,7 @@ class AppFixtures extends Fixture
         ]);
 
         $kitLimpieza = MaterialFactory::createOne([
+            'codigo' => 'LWP163',
             'nombre' => 'Kit limpieza aula',
             'descripcion' => null,
             'fechaHoraUltimoPrestamo' => null,
@@ -331,7 +345,8 @@ class AppFixtures extends Fixture
         ]);
 
         MaterialFactory::createOne([
-            'nombre' => 'Papel',
+            'codigo' => 'JYW808',
+            'nombre' => 'Papel Higiénico',
             'descripcion' => '',
             'fechaHoraUltimoPrestamo' => null,
             'fechaHoraUltimaDevolucion' => null,
@@ -347,6 +362,7 @@ class AppFixtures extends Fixture
         ]);
 
         MaterialFactory::createOne([
+            'codigo' => 'HEM185',
             'nombre' => 'Gel hidroalcohólico',
             'descripcion' => '',
             'fechaHoraUltimoPrestamo' => null,
@@ -363,6 +379,7 @@ class AppFixtures extends Fixture
         ]);
 
         MaterialFactory::createOne([
+            'codigo' => 'BWH305',
             'nombre' => 'Limpiacristales',
             'descripcion' => '',
             'fechaHoraUltimoPrestamo' => null,

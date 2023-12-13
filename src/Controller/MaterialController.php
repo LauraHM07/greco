@@ -33,6 +33,42 @@ class MaterialController extends AbstractController
     }
 
     /**
+     * @Route("/material/disponible", name="material_disponible_listar")
+     * @Security("is_granted('ROLE_USUARIO')")
+     */
+    public function listarMaterialDisponible(MaterialRepository $materialRepository, Request $request, PaginatorInterface $paginator) : Response {
+        $materiales = $materialRepository->findAllMaterialesDisponibles();
+
+        $pagination = $paginator->paginate(
+            $materiales,
+            $request->query->getInt('page', 1),
+            5
+        );
+
+        return $this->render('material/listar.html.twig', [
+            'pagination' => $pagination
+        ]);
+    }
+
+    /**
+     * @Route("/material/noDisponible", name="material_noDisponible_listar")
+     * @Security("is_granted('ROLE_USUARIO')")
+     */
+    public function listarMaterialNoDisponible(MaterialRepository $materialRepository, Request $request, PaginatorInterface $paginator) : Response {
+        $materiales = $materialRepository->findAllMaterialesNoDisponibles();
+
+        $pagination = $paginator->paginate(
+            $materiales,
+            $request->query->getInt('page', 1),
+            5
+        );
+
+        return $this->render('material/listar.html.twig', [
+            'pagination' => $pagination
+        ]);
+    }
+
+    /**
      * @Route("/material/nuevo", name="material_nuevo")
      * @Security("is_granted('ROLE_GESTOR')")
      */

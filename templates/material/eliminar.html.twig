@@ -19,6 +19,7 @@
 
     <h5>Datos del material</h5>
     <ul>
+        <li>Código: {{ material.codigo }}</li>
         <li>Nombre: {{ material.nombre }}</li>
         <li>Localización: {{ material.localizacion.nombre }}</li>
         {% if material.descripcion is not null %}
