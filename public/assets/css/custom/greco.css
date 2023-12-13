@@ -7,6 +7,7 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #fbfbfb !important;
 }
 
 a {
@@ -50,12 +51,6 @@ a {
     color: white !important;
 }
 
-.navbar-toggler:hover {
-    .fa-solid {
-        font-size: 35px;
-    }
-}
-
 .navbar-toggler:focus {
     box-shadow: none !important;
 }
@@ -78,8 +73,14 @@ a {
     height: 120px;
 }
 
-.cardEntidad:hover {
-    box-shadow: 0px 3px 13px 0px rgba(62, 62, 62, 0.62);
+.cardEntidad {
+    .fa-solid {
+        font-size: 24px;
+    }
+
+    &:hover {
+        box-shadow: 0px 3px 13px 0px rgba(62, 62, 62, 0.62);
+    }
 }
 
 .container .pagination {
@@ -110,7 +111,7 @@ a {
 }
 
 .fa-solid {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .table>:not(caption)>*>* {
@@ -194,11 +195,6 @@ form .btn i {
         flex-direction: column;
     }
 }
-
-.offcanvas-header {
-    border-bottom: 1px solid grey;
-}
-
 .btn-sm i {
     font-size: 13px;
 }

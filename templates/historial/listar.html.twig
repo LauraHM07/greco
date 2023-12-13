@@ -5,10 +5,6 @@
 {% block content %}
     <div class="barraArriba">
         <h2 class="titulo">Listado de los préstamos</h2>
-
-        <a href="{{ path('historial_nuevo') }}" class="btn btn-info">
-            <i class="fa-solid fa-plus"></i> Nuevo préstamo
-        </a>
     </div>
 
     <table class="table table-hover align-middle">
@@ -19,7 +15,11 @@
                 <th>Fecha Devolución </th>
                 <th>Notas</th>
                 {% if is_granted('ROLE_GESTOR') %}
-                    <th></th>
+                    <th>
+                        <a href="{{ path('historial_nuevo') }}" class="btn btn-sm btn-info">
+                            <i class="fa-solid fa-plus"></i> Nuevo préstamo
+                        </a>
+                    </th>
                 {% endif %}
             </tr>
         </thead>

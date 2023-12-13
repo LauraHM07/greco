@@ -41,9 +41,11 @@
                                 </li>
                             {% endif %}
 
+                            <hr>
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Perfil
+                                    Ajustes
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="{{ path('persona_cambiar_clave', {'id': app.user.id}) }}"><i class="fa-solid fa-pen"></i>Cambiar contraseña</a></li>

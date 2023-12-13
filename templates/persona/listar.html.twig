@@ -4,11 +4,7 @@
 
 {% block content %}
     <div class="barraArriba">
-        <h2 class="titulo">Listado del personal</h2>
-
-        <a href="{{ path('persona_nueva') }}" class="btn btn-info">
-            <i class="fa-solid fa-plus"></i> Nueva persona
-        </a>
+        <h3 class="titulo">Listado del personal</h3>
     </div>
 
     <table class="table table-hover align-middle">
@@ -19,7 +15,11 @@
                 <th>Apellidos</th>
                 <th>Administrador</th>
                 <th>Gestor préstamos</th>
-                <th></th>
+                <th>
+                    <a href="{{ path('persona_nueva') }}" class="btn btn-sm btn-info">
+                        <i class="fa-solid fa-plus"></i> Nueva persona
+                    </a>
+                </th>
             </tr>
         </thead>
         <tbody class="table-group-divider">

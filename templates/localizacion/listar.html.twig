@@ -4,11 +4,7 @@
 
 {% block content %}
     <div class="barraArriba">
-        <h2 class="titulo">Listado de las localizaciones</h2>
-
-        <a href="{{ path('localizacion_nueva') }}" class="btn btn-info">
-            <i class="fa-solid fa-plus"></i> Nueva localización
-        </a>
+        <h3 class="titulo">Listado de las localizaciones</h3>
     </div>
 
     <table class="table table-hover align-middle">
@@ -17,9 +13,11 @@
                 <th>Código</th>
                 <th>Nombre</th>
                 <th>Descripción</th>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <th></th>
-                {% endif %}
+                <th>
+                    <a href="{{ path('localizacion_nueva') }}" class="btn btn-sm btn-info">
+                        <i class="fa-solid fa-plus"></i> Nueva localización
+                    </a>
+                </th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
