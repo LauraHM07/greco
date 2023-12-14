@@ -47,8 +47,6 @@ final class HistorialFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            'fechaHoraDevolucion' => self::faker()->dateTimeThisDecade(),
-            'fechaHoraPrestramo' => self::faker()->dateTimeThisDecade(),
             'notas' => self::faker()->optional(0.5)->sentence(6)
         ];
     }

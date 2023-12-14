@@ -4,10 +4,52 @@
 
 {% block content %}
     <div class="row" style="display: flex; justify-content: center; margin-top: 5em;">
+        <div class="col-4">
+            <a href="{{ path('historial_listar') }}">
+                <div class="card text-center cardEntidad">
+                    <img src="{{ asset('images/fondo_card.png') }}" class="card-img" alt="fondo carta">
+                    <div class="card-img-overlay" style="display: flex; align-items: center; flex-direction: column; justify-content: center; gap: 0.5em;">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <h5 class="card-title">Historial de préstamos</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        {% if is_granted('ROLE_GESTOR') %}
+            <div class="col-4">
+                <a href="{{ path('historial_nuevo') }}">
+                    <div class="card text-center cardEntidad">
+                        <img src="{{ asset('images/fondo_card.png') }}" class="card-img" alt="fondo carta">
+                        <div class="card-img-overlay" style="display: flex; align-items: center; flex-direction: column; justify-content: center; gap: 0.5em;">
+                            <i class="fa-solid fa-file-lines"></i>
+                            <h5 class="card-title">Realizar préstamo</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endif %}
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="col-4">
+                <a href="{{ path('persona_listar') }}">
+                    <div class="card text-center cardEntidad mt-2">
+                        <img src="{{ asset('images/fondo_card.png') }}" class="card-img" alt="fondo carta">
+                        <div class="card-img-overlay" style="display: flex; align-items: center; flex-direction: column; justify-content: center; gap: 0.5em;">
+                            <i class="fa-solid fa-users"></i>
+                            <h5 class="card-title">Personal</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="row" style="display: flex; justify-content: center; margin-top: 0.5em;">
         {% if is_granted('ROLE_ADMIN') %}
             <div class="col-4">
                 <a href="{{ path('localizacion_listar') }}">
-                    <div class="card text-center cardEntidad mb-3">
+                    <div class="card text-center cardEntidad mt-2">
                         <img src="{{ asset('images/fondo_card.png') }}" class="card-img" alt="fondo carta">
                         <div class="card-img-overlay" style="display: flex; align-items: center; flex-direction: column; justify-content: center; gap: 0.5em;">
                             <i class="fa-solid fa-location-dot"></i>
@@ -29,33 +71,5 @@
                 </div>
             </a>
         </div>
-    </div>
-
-    <div class="row" style="display: flex; justify-content: center; margin-top: 0.5em;">
-        <div class="col-4">
-            <a href="{{ path('historial_listar') }}">
-                <div class="card text-center cardEntidad mb-3">
-                    <img src="{{ asset('images/fondo_card.png') }}" class="card-img" alt="fondo carta">
-                    <div class="card-img-overlay" style="display: flex; align-items: center; flex-direction: column; justify-content: center; gap: 0.5em;">
-                        <i class="fa-solid fa-clock-rotate-left"></i>
-                        <h5 class="card-title">Préstamos</h5>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        {% if is_granted('ROLE_ADMIN') %}
-            <div class="col-4">
-                <a href="{{ path('persona_listar') }}">
-                    <div class="card text-center cardEntidad mb-3">
-                        <img src="{{ asset('images/fondo_card.png') }}" class="card-img" alt="fondo carta">
-                        <div class="card-img-overlay" style="display: flex; align-items: center; flex-direction: column; justify-content: center; gap: 0.5em;">
-                            <i class="fa-solid fa-users"></i>
-                            <h5 class="card-title">Personal</h5>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        {% endif %}
     </div>
 {% endblock %}

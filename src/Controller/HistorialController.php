@@ -52,8 +52,30 @@ class HistorialController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()) {
             try {
+                $material = $historial->getMaterial();
+                $materialPadre = $material->getMaterialPadre();
+
+                if($historial->getFechaHoraDevolucion() == null) {
+                    $material->setDisponible(false);
+                } else {
+                    if($materialPadre) {
+                        foreach ($materialPadre->getSubMateriales() as $subMaterial) {
+                            $subMaterial->setDisponible(true);
+                        }
+                    }
+                    $material->setDisponible(true);
+                }
+
+                try {
+                    $this->getDoctrine()->getManager()->flush();
+                } catch (\Exception $e) {
+                    dump($e->getMessage());
+                }
+
                 $historialRepository->guardar();
+
                 $this->addFlash('exito', 'Cambios guardados con exito');
+
                 return $this->redirectToRoute('historial_listar');
             } catch (\Exception $e) {
                 $this->addFlash('error', 'No se han podido guardar los cambios');
@@ -62,26 +84,6 @@ class HistorialController extends AbstractController
         return $this->render('historial/modificar.html.twig', [
             'historial' => $historial,
             'form' => $form->createView()
-        ]);
-    }
-
-    /**
-     * @Route("/historial/eliminar/{id}", name="historial_eliminar")
-     * @Security("is_granted('ROLE_GESTOR')")
-     */
-    public function eliminar(HistorialRepository $historialRepository, Request $request, Historial $historial) : Response {
-        if ($request->get('confirmar')) {
-            try {
-                $historialRepository->eliminar($historial);
-                $historialRepository->guardar();
-                $this->addFlash('exito', 'Historial eliminado con éxito');
-                return $this->redirectToRoute('historial_listar');
-            } catch (\Exception $e) {
-                $this->addFlash('error', '¡Ocurrió un error al eliminar!');
-            }
-        }
-        return $this->render('historial/eliminar.html.twig', [
-            'historial' => $historial
         ]);
     }
 }

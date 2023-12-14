@@ -26,8 +26,8 @@ class Historial
     private $fechaHoraPrestramo;
 
     /**
-     * @ORM\Column(type="date")
-     * @var \DateTime
+     * @ORM\Column(type="date", nullable=true)
+     * @var \DateTime|null
      */
     private $fechaHoraDevolucion;
 
@@ -82,12 +82,12 @@ class Historial
         return $this;
     }
 
-    public function getFechaHoraDevolucion(): \DateTime
+    public function getFechaHoraDevolucion(): ?\DateTime
     {
         return $this->fechaHoraDevolucion;
     }
 
-    public function setFechaHoraDevolucion(\DateTime $fechaHoraDevolucion): Historial
+    public function setFechaHoraDevolucion(?\DateTime $fechaHoraDevolucion): Historial
     {
         $this->fechaHoraDevolucion = $fechaHoraDevolucion;
         return $this;

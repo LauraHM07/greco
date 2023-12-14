@@ -17,9 +17,5 @@
     <a href="{{ path('historial_listar') }}" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i>Volver</a>
     <button type="submit" class="btn btn-success"><i class="fa fa-check"></i>Guardar</button>
 
-    {% if historial.id %}
-        <a href="{{ path('historial_eliminar', {'id': historial.id}) }}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Eliminar</a>
-    {% endif %}
-
     {{ form_end(form) }}
 {% endblock %}
