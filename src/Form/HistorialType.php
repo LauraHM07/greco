@@ -62,6 +62,7 @@ class HistorialType extends AbstractType
                 'choices' => $gestores,
                 'choice_label' => 'nombre',
                 'label' => 'Prestado por',
+                'data' => $usuario,
                 'required' => true,
                 'placeholder' => false
             ])
