@@ -7,28 +7,70 @@
         <h3 class="titulo">Eliminar Material</h3>
     </div>
 
-    <div class="alert alert-warning">
-        <i class="fa-solid fa-triangle-exclamation"></i> ¿Está segur@ de que deseas eliminar el material?
-    </div>
+    {% if material.materialPadre is not null %}
+        {% if material.disponible and material.materialPadre.disponible %}
+            <div class="alert alert-danger">
+                <i class="fa-solid fa-triangle-exclamation"></i> ¿Está segur@ de que deseas eliminar el material?
+            </div>
 
-    {% if material.materialPadre is null %}
-        <div class="alert alert-primary">
-            <i class="fa-solid fa-circle-info"></i> Se borrarán sus materiales hijos.
-        </div>
+            {% if material.materialPadre is null %}
+                <div class="alert alert-warning">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Se borrarán sus materiales hijos.
+                </div>
+            {% endif %}
+        {% elseif material.disponible and not material.materialPadre.disponible %}
+            <div class="alert alert-warning">
+                <i class="fa-solid fa-triangle-exclamation"></i> Estás intentando borrar un material cuyo padre no está disponible.
+            </div>
+        {% else %}
+            <div class="alert alert-warning">
+                <i class="fa-solid fa-triangle-exclamation"></i> Estás intentando borrar un material que no está disponible.
+            </div>
+        {% endif %}
+    {% else %}
+        {% if material.disponible %}
+            <div class="alert alert-danger">
+                <i class="fa-solid fa-triangle-exclamation"></i> ¿Está segur@ de que deseas eliminar el material?
+            </div>
+        {% else %}
+            <div class="alert alert-warning">
+                <i class="fa-solid fa-triangle-exclamation"></i> Estás intentando borrar un material que no está disponible.
+            </div>
+        {% endif %}
     {% endif %}
 
     <h5>Datos del material</h5>
-    <ul>
-        <li>Código: {{ material.codigo }}</li>
-        <li>Nombre: {{ material.nombre }}</li>
-        <li>Localización: {{ material.localizacion.nombre }}</li>
+    <ul class="list-group">
+        <li class="list-group-item">Código: {{ material.codigo }}</li>
+        <li class="list-group-item">Nombre: {{ material.nombre }}</li>
+        <li class="list-group-item">Localización: {{ material.localizacion.nombreCompleto }}</li>
         {% if material.descripcion is not null %}
-            <li>Descripción: {{ material.descripcion }}</li>
+            <li class="list-group-item">Descripción: {{ material.descripcion }}</li>
+        {% endif %}
+        {% if material.subMateriales is not empty %}
+            <li class="list-group-item"> Submateriales:
+                <ul>
+                    {% for subMaterial in material.subMateriales %}
+                        <li>{{ subMaterial.nombre }} ({{ subMaterial.codigo }})</li>
+                    {% endfor %}
+                </ul>
+            </li>
         {% endif %}
     </ul>
 
-    <form method="post">
-        <a href="{{ path('material_modificar', {'id': material.id}) }}" class="btn btn-info"><i class="fa-solid fa-arrow-left"></i>Volver</a>
-        <button type="submit" name="confirmar" value="ok" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Eliminar</button>
-    </form>
+    {% if material.materialPadre is not null %}
+        {% if material.disponible and material.materialPadre.disponible %}
+            <form method="post" class="mt-3">
+                <a href="{{ path('material_modificar', {'id': material.id}) }}" class="btn btn-info"><i class="fa-solid fa-arrow-left"></i>Volver</a>
+                <button type="submit" name="confirmar" value="ok" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Eliminar</button>
+            </form>
+        {% endif %}
+    {% else %}
+        {% if material.disponible %}
+            <form method="post" class="mt-3">
+                <a href="{{ path('material_modificar', {'id': material.id}) }}" class="btn btn-info"><i class="fa-solid fa-arrow-left"></i>Volver</a>
+                <button type="submit" name="confirmar" value="ok" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Eliminar</button>
+            </form>
+        {% endif %}
+    {% endif %}
 {% endblock %}

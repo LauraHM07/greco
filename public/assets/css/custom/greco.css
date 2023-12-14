@@ -14,9 +14,13 @@ a {
     text-decoration: none !important;
 }
 
-.alert i {
-    font-size: 15px !important;
-    margin-right: 0.5em !important;
+.alert {
+    padding: 0.5em 1em !important;
+
+    &i {
+        font-size: 15px !important;
+        margin-right: 0.5em !important;
+    }
 }
 
 .barraArriba {
@@ -146,7 +150,12 @@ form .btn i {
     flex-direction: row;
 
     .lista {
-        margin-left: 3.5em;
+        margin-left: 4.5em;
+        flex-direction: column;
+    }
+
+    .lista2 {
+        margin-left: 5.9em;
         flex-direction: column;
     }
 }
@@ -194,6 +203,11 @@ form .btn i {
     position: relative;
 }
 
+.rojo {
+    font-weight: bold;
+    color: red !important;
+}
+
 .table tbody td {
     &:last-child button {
         padding-bottom: 0.350rem;
@@ -205,6 +219,11 @@ form .btn i {
 
 .table>:not(caption)>*>* {
     background: transparent !important;
+}
+
+textarea {
+    height: 4em !important;
+    resize: none !important;
 }
 
 .titulo {

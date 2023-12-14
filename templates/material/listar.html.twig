@@ -24,9 +24,8 @@
                 <th>Código</th>
                 <th>Nombre</th>
                 <th>Localización</th>
+                <th>Responsable</th>
                 <th>Descripción</th>
-                <th>Último Préstamo</th>
-                <th>Última Devolución</th>
                 {% if is_granted('ROLE_GESTOR') %}
                     <th>
                         {% if is_granted('ROLE_GESTOR') %}
@@ -44,9 +43,8 @@
                     <td>{{ material.codigo }}</td>
                     <td>{{ material.nombre }}</td>
                     <td>{{ material.localizacion is null ? '' : material.localizacion.nombre }}</td>
+                    <td>{{ material.responsable.apellidos }}, {{ material.responsable.nombre }}</td>
                     <td>{{ material.descripcion is null ? '' : material.descripcion }}</td>
-                    <td>{{ material.fechaHoraUltimoPrestamo ? material.fechaHoraUltimoPrestamo|date('Y/m/d') : '' }}</td>
-                    <td>{{ material.fechaHoraUltimaDevolucion ? material.fechaHoraUltimaDevolucion|date('Y/m/d') : '' }}</td>
                     {% if is_granted('ROLE_GESTOR') %}
                         <td>
                             <a href="{{ path('material_modificar', {'id': material.id}) }}" class="btn btn-secondary">

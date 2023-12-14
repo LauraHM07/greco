@@ -5,7 +5,6 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -24,14 +23,12 @@ class Localizacion
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\Regex("/[A-Z]{3}\d{3}/", message="Necesita seguir el estilo 3 mayúsculas y 3 dígitos")
      * @var string
      */
     private $codigo;
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\NotBlank(message="No puede estar vacío")
      * @var string
      */
     private $nombre;

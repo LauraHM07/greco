@@ -45,8 +45,6 @@ class LocalizacionType extends AbstractType
                 $pisos = $this->localizacionRepository->findLocalizacionesSinPadre();
                 $salas = $this->localizacionRepository->findLocalizacionesConPadreEHijos();
 
-                dump($localizaciones);
-
                 // Si no existen datos, significa que el form está vacío ===> Crear nueva localización
                 if (!$data || null === $data->getId()) {
                     $form->add('localizacionPadre', EntityType::class, [

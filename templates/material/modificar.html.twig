@@ -18,20 +18,22 @@
         <div class="jerarquia">
             <label>Materiales hijos</label>
 
-            <ul class="lista">
+            <ul class="list-group lista2">
                 {% for subMaterial in subMateriales %}
-                    <li>{{ subMaterial.nombre }}</li>
+                    <li class="list-group-item">{{ subMaterial.nombre }}</li>
                 {% endfor %}
             </ul>
         </div>
     {% endif %}
 
-    <a href="{{ path('material_listar') }}" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i>Volver</a>
-    <button type="submit" class="btn btn-success"><i class="fa fa-check"></i>Guardar</button>
+    <div class="mt-3">
+        <a href="{{ path('material_listar') }}" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i>Volver</a>
+        <button type="submit" class="btn btn-success"><i class="fa fa-check"></i>Guardar</button>
 
-    {% if material.id %}
-        <a href="{{ path('material_eliminar', {'id': material.id}) }}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Eliminar</a>
-    {% endif %}
+        {% if material.id %}
+            <a href="{{ path('material_eliminar', {'id': material.id}) }}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Eliminar</a>
+        {% endif %}
+    </div>
 
     {{ form_end(form) }}
 {% endblock %}

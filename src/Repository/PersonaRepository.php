@@ -28,4 +28,12 @@ class PersonaRepository extends ServiceEntityRepository
 
         return $persona;
     }
+
+    public function findAllPersonasGestor()
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.gestorPrestamos = true')
+            ->getQuery()
+            ->getResult();
+    }
 }

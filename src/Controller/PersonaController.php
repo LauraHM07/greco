@@ -114,9 +114,9 @@ class PersonaController extends AbstractController
 
                 $repository->guardar();
 
-                flash()->addSuccess('Cambios guardados con éxito.');
+                flash()->addSuccess('Contraseña cambiada con éxito.');
 
-                return $this->redirectToRoute('persona_listar');
+                return $this->redirectToRoute('welcome');
             } catch (\Exception $e) {
                 flash()->addError('Ha ocurrido un error. Contacte el Administrador.');
             }

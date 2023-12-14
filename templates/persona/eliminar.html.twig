@@ -7,12 +7,26 @@
         <h3 class="titulo">Eliminar Persona</h3>
     </div>
 
-    <div class="alert alert-warning">
-        ¿Está segur@ de que deseas eliminar la persona {{ persona.nombre }} {{ persona.apellidos }}?
-    </div>
+    {% if app.user.id == persona.id %}
+        <div class="alert alert-warning">
+            <i class="fa-solid fa-triangle-exclamation"></i> Estás intentando borrar tu cuenta.
+        </div>
+    {% else %}
+        <div class="alert alert-danger">
+            <i class="fa-solid fa-triangle-exclamation"></i> ¿Está segur@ de que desea eliminar la persona?
+        </div>
+    {% endif %}
 
-    <form method="post">
-        <a href="{{ path('persona_modificar', {'id': persona.id}) }}" class="btn btn-info"><i class="fa-solid fa-arrow-left"></i> Volver</a>
-        <button type="submit" name="confirmar" value="ok" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Confirmar eliminación</button>
-    </form>
+    <h5>Datos del material</h5>
+    <ul class="list-group">
+        <li class="list-group-item">Usuario: {{ persona.nombreUsuario }}</li>
+        <li class="list-group-item">Nombre Completo: {{ persona.apellidos }}, {{ persona.nombre }}</li>
+    </ul>
+
+    {% if app.user.id != persona.id %}
+        <form method="post" class="mt-3">
+            <a href="{{ path('persona_modificar', {'id': persona.id}) }}" class="btn btn-info"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+            <button type="submit" name="confirmar" value="ok" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> Confirmar eliminación</button>
+        </form>
+    {% endif %}
 {% endblock %}

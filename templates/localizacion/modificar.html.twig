@@ -18,20 +18,22 @@
         <div class="jerarquia">
             <label>Localizaciones hija</label>
 
-            <ul class="lista">
+            <ul class="list-group lista">
                 {% for subLocalizacion in subLocalizaciones %}
-                    <li>{{ subLocalizacion.nombre }}</li>
+                    <li class="list-group-item">{{ subLocalizacion.nombre }}</li>
                 {% endfor %}
             </ul>
         </div>
     {% endif %}
 
-    <a href="{{ path('localizacion_listar') }}" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i>Volver</a>
-    <button type="submit" class="btn btn-success"><i class="fa fa-check"></i>Guardar</button>
+    <div class="mt-3">
+        <a href="{{ path('localizacion_listar') }}" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i>Volver</a>
+        <button type="submit" class="btn btn-success"><i class="fa fa-check"></i>Guardar</button>
 
-    {% if localizacion.id %}
-        <a href="{{ path('localizacion_eliminar', {'id': localizacion.id}) }}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Eliminar</a>
-    {% endif %}
+        {% if localizacion.id %}
+            <a href="{{ path('localizacion_eliminar', {'id': localizacion.id}) }}" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>Eliminar</a>
+        {% endif %}
+    </div>
 
     {{ form_end(form) }}
 {% endblock %}
