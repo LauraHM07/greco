@@ -14,9 +14,23 @@ a {
     text-decoration: none !important;
 }
 
-.titulo {
-    margin-top: 1em !important;
-    margin-bottom: 0.5em !important;
+.alert i {
+    font-size: 15px !important;
+    margin-right: 0.5em !important;
+}
+
+.barraArriba {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-sm i {
+    font-size: 13px;
+}
+
+.cardLogin {
+    box-shadow: 1px 1.5px 16px -5px rgba(0,0,0,0.75);
 }
 
 .custom-navbar {
@@ -26,51 +40,19 @@ a {
     color: white !important;
     list-style: none !important;
 
-    .fa-solid {
-        font-size: 30px;
-    }
-
-    .fa-power-off {
-        color: red;
-        font-size: 15px;
-        margin-right: 0.5em;
-    }
-
-    .fa-pen {
-        font-size: 15px;
-        margin-right: 0.5em;
-    }
-
     .dropdown-item:focus {
         color: black !important;
         background-color: lightgray !important;
     }
-}
 
-.navbar-brand{
-    color: white !important;
-}
-
-.navbar-toggler:focus {
-    box-shadow: none !important;
-}
-
-.container-fluid .navbar-toggler {
-    border: none;
-
-    .fa-bars {
-        color: white;
+    .fa-power-off, .fa-pen {
+        font-size: 15px;
+        margin-right: 0.5em;
     }
-}
 
-.logo {
-    width: 150px;
-    height: 60px;
-}
-
-.logoLogin {
-    width: 120px;
-    height: 120px;
+    .fa-power-off {
+        color: red;
+    }
 }
 
 .cardEntidad {
@@ -80,6 +62,15 @@ a {
 
     &:hover {
         box-shadow: 0px 3px 13px 0px rgba(62, 62, 62, 0.62);
+    }
+}
+
+.container-fluid .navbar-toggler {
+    border: none;
+
+    .fa-bars {
+        color: white;
+        font-size: 30px;
     }
 }
 
@@ -101,66 +92,6 @@ a {
     }
 }
 
-.table tbody td {
-    &:last-child button {
-        padding-bottom: 0.350rem;
-        padding-top: 0.350rem;
-        padding-left: 0.450rem;
-        padding-right: 0.450rem;
-    }
-}
-
-.fa-solid {
-    font-size: 16px;
-}
-
-.table>:not(caption)>*>* {
-    background: transparent !important;
-}
-
-.barraArriba {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.leyendaD:before {
-    content: "";
-    display: inline-block;
-    width: 25px;
-    height: 10px;
-    background-color: rgba(255, 100, 100, 0.6);
-    margin-right: 5px;
-}
-
-.no-disponible {
-    background-color: rgba(255, 100, 100, 0.6) !important;
-}
-
-.position-relative {
-    position: relative;
-}
-
-.position-absolute {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-115%);
-    right: 10px;
-    cursor: pointer;
-}
-
-.cardLogin {
-    box-shadow: 1px 1.5px 16px -5px rgba(0,0,0,0.75);
-}
-
-.form-control:focus {
-    box-shadow: none !important;
-}
-
-.toast-body {
-    background-color: #fff !important;
-}
-
 .error {
     background-color: #f8d7da !important;
     border-color: #f1aeb5 !important;
@@ -171,33 +102,17 @@ a {
     color: #e33d4e !important;
 }
 
-.fst-italic {
-    color: grey !important;
-    font-weight: bold !important;
+.fa-solid {
+    font-size: 16px;
+}
+
+.form-control:focus {
+    box-shadow: none !important;
 }
 
 form .btn i {
     font-size: 15px !important;
     margin-right: 0.5em !important;
-}
-
-.alert i {
-    font-size: 15px !important;
-    margin-right: 0.5em !important;
-}
-
-.jerarquia {
-    display: flex;
-    flex-direction: row;
-
-    .lista {
-        margin-left: 3.5em;
-        flex-direction: column;
-    }
-}
-
-.btn-sm i {
-    font-size: 13px;
 }
 
 .fotos {
@@ -219,4 +134,80 @@ form .btn i {
             }
         }
     }
+}
+
+.fst-italic {
+    color: grey !important;
+    font-weight: bold !important;
+}
+
+.jerarquia {
+    display: flex;
+    flex-direction: row;
+
+    .lista {
+        margin-left: 3.5em;
+        flex-direction: column;
+    }
+}
+
+.leyendaD:before {
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height: 10px;
+    background-color: rgba(255, 100, 100, 0.6);
+    margin-right: 5px;
+}
+
+.logo {
+    width: 150px;
+    height: 60px;
+}
+
+.logoLogin {
+    width: 120px;
+    height: 120px;
+}
+
+.navbar-brand{
+    color: white !important;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none !important;
+}
+
+.no-disponible {
+    background-color: rgba(255, 100, 100, 0.6) !important;
+}
+
+.position-absolute {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-115%);
+    right: 10px;
+    cursor: pointer;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.table tbody td {
+    &:last-child button {
+        padding-bottom: 0.350rem;
+        padding-top: 0.350rem;
+        padding-left: 0.450rem;
+        padding-right: 0.450rem;
+    }
+}
+
+.table>:not(caption)>*>* {
+    background: transparent !important;
+}
+
+.titulo {
+    margin-top: 1em !important;
+    margin-bottom: 0.5em !important;
 }
